@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Md. Fahim Faisal — Materials Engineering, Ventures &amp; Strategy</title>
-    <meta name="description" content="Md. Fahim Faisal (He/Him) — Co-Founder @ Gryffindor Lab · Head of Student Committee @ Innovation Cauldron Foundation · Business Development Executive @ AMC · Undergraduate @ BUET (Nanomaterials & Ceramic Engineering).">
+    <meta name="description" content="Md. Fahim Faisal (He/Him) — Co-Founder @ Gryffindor Lab (www.gryffindorlab.com) · Head of Student Committee @ Innovation Cauldron Foundation (www.innovationcauldron.org) · Business Development Executive @ AMC · Undergraduate @ BUET (Nanomaterials & Ceramic Engineering).">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -114,9 +114,6 @@
 </head>
 <body class="font-sans text-[15px] leading-relaxed transition-colors duration-150">
 
-    <!-- Hidden File Input for Selecting "Md. Fahim Faisal_InsightFellow (2).jpg" -->
-    <input type="file" id="photoFileInput" accept="image/*" class="hidden" onchange="handlePhotoSelected(event)">
-
     <!-- Sticky Minimal Top Navigation (gryffindorlab.com Editorial Header) -->
     <header class="sticky top-0 z-40 bg-paper/95 dark:bg-carbon/95 backdrop-blur-sm border-b border-line no-print">
         <div class="max-w-4xl mx-auto px-5 sm:px-8 h-14 flex items-center justify-between">
@@ -141,7 +138,7 @@
                     id="headerStyleBtn"
                     onclick="toggleHeroLayout()"
                     class="hover:text-ink dark:hover:text-chalk transition-colors"
-                    title="Switch between Proportional LinkedIn Profile Card and Pure Minimal Hero"
+                    title="Switch between Proportional LinkedIn Profile Card and Pure Minimal Text Hero"
                 >
                     Header: Card
                 </button>
@@ -187,39 +184,12 @@
                 <button type="button" onclick="toggleHeroLayout(); toggleMobileMenu();" class="underline underline-offset-4">
                     Switch Header Style
                 </button>
-                <button type="button" onclick="triggerPhotoPicker(); toggleMobileMenu();" class="underline underline-offset-4">
-                    Embed Photo
+                <button type="button" onclick="openCvModal(); toggleMobileMenu();" class="underline underline-offset-4">
+                    View CV
                 </button>
             </div>
         </div>
     </header>
-
-    <!-- One-Click Photo Embed Notification Banner (Shows when user selects their photo) -->
-    <div id="photoReadyBanner" class="hidden bg-ink text-paper dark:bg-chalk dark:text-carbon border-b border-line no-print">
-        <div class="max-w-4xl mx-auto px-5 sm:px-8 py-3 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[13px]">
-            <div>
-                <span class="font-medium">Portrait embedded into page.</span>
-                <span class="opacity-80 ml-1">Copy the self-contained <code class="px-1 py-0.5 bg-paper/15 dark:bg-carbon/15">index.html</code> code and paste it into GitHub.</span>
-            </div>
-            <div class="flex items-center gap-3 shrink-0">
-                <button
-                    type="button"
-                    id="copyHtmlWithPhotoBtn"
-                    onclick="copyFullHtmlWithEmbeddedPhoto()"
-                    class="px-3.5 py-1.5 bg-paper text-ink dark:bg-carbon dark:text-chalk font-medium text-[12.5px] hover:opacity-90 transition-opacity"
-                >
-                    Copy Complete HTML (With Photo Embedded)
-                </button>
-                <button
-                    type="button"
-                    onclick="document.getElementById('photoReadyBanner').classList.add('hidden')"
-                    class="opacity-70 hover:opacity-100 px-1"
-                >
-                    ✕
-                </button>
-            </div>
-        </div>
-    </div>
 
     <!-- Main Single-Column Editorial Container (max-w-4xl, gryffindorlab.com proportions) -->
     <main id="top" class="max-w-4xl mx-auto px-5 sm:px-8 pb-24">
@@ -244,32 +214,24 @@
                 <!-- Card Body -->
                 <div class="px-5 sm:px-8 pb-7 sm:pb-8">
 
-                    <!-- Overlapping Proportional Avatar Row (96px - 108px) + Top Right Action Links -->
+                    <!-- Overlapping Proportional Avatar Row (96px - 112px) + Top Right Action Links -->
                     <div class="flex flex-wrap items-end justify-between gap-4 -mt-12 sm:-mt-14 mb-5 relative z-10">
-                        <div
-                            onclick="triggerPhotoPicker()"
-                            title="Click to select or embed 'Md. Fahim Faisal_InsightFellow (2).jpg'"
-                            class="relative group w-24 h-24 sm:w-28 sm:h-28 rounded-full border-4 border-paper dark:border-carbon bg-surface dark:bg-darksurface overflow-hidden cursor-pointer shrink-0 shadow-xs"
-                        >
-                            <!-- Primary Portrait Image -->
+                        <!-- Locked Portrait Frame: Uses me.jpg on Vercel/GitHub and falls back to C:\Users\User\Downloads\me.jpg locally -->
+                        <div class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full border-4 border-paper dark:border-carbon bg-surface dark:bg-darksurface overflow-hidden shrink-0 shadow-xs">
                             <img
                                 id="profile-img"
-                                src="Md.%20Fahim%20Faisal_InsightFellow%20(2).jpg"
-                                data-fallback="profile.jpg"
+                                src="me.jpg"
+                                data-local-uri="file:///C:/Users/User/Downloads/me.jpg"
+                                data-local-win="C:\Users\User\Downloads\me.jpg"
                                 alt="Md. Fahim Faisal"
                                 class="w-full h-full object-cover object-top"
-                                onerror="handleProfileImageError(this)"
+                                onerror="handleLockedPortraitError(this)"
                             >
 
-                            <!-- Clean Minimal Initials Fallback if local image isn't loaded yet -->
+                            <!-- Clean Minimal Monogram Fallback (Only shown if me.jpg is not in the folder yet) -->
                             <div id="profile-fallback" class="hidden w-full h-full flex flex-col items-center justify-center bg-surface dark:bg-darksurface text-ink dark:text-chalk text-center p-2 select-none">
-                                <span class="font-medium text-lg tracking-tight">MFF</span>
-                                <span class="text-[10px] text-muted dark:text-dim leading-tight mt-0.5">Click to set photo</span>
-                            </div>
-
-                            <!-- Hover Overlay -->
-                            <div class="no-print absolute inset-0 bg-ink/65 text-paper opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-center p-2">
-                                <span class="text-[10.5px] font-medium leading-tight">Upload / Embed Photo</span>
+                                <span class="font-semibold text-lg tracking-tight">MFF</span>
+                                <span class="font-mono text-[9.5px] text-muted dark:text-dim leading-tight mt-0.5">Md. Fahim Faisal</span>
                             </div>
                         </div>
 
@@ -286,15 +248,7 @@
                                 onclick="openCvModal()"
                                 class="px-3.5 py-1.5 border border-line text-ink dark:text-chalk text-[12.5px] font-medium hover:bg-surface dark:hover:bg-darksurface transition-colors"
                             >
-                                Curriculum Vitae
-                            </button>
-                            <button
-                                type="button"
-                                onclick="triggerPhotoPicker()"
-                                class="px-3 py-1.5 border border-line text-muted dark:text-dim hover:text-ink dark:hover:text-chalk text-[12px] transition-colors"
-                                title="Select Md. Fahim Faisal_InsightFellow (2).jpg from your computer to embed directly into this HTML file"
-                            >
-                                Embed Photo ↗
+                                View CV
                             </button>
                         </div>
                     </div>
@@ -322,8 +276,8 @@
                                     www.gryffindorlab.com
                                 </a>
                                 <span>·</span>
-                                <a href="https://www.innovationcauldronfoundation.org" target="_blank" rel="noopener noreferrer" class="text-ink dark:text-chalk underline decoration-hairline hover:decoration-ink underline-offset-4">
-                                    www.innovationcauldronfoundation.org
+                                <a href="https://www.innovationcauldron.org" target="_blank" rel="noopener noreferrer" class="text-ink dark:text-chalk underline decoration-hairline hover:decoration-ink underline-offset-4">
+                                    www.innovationcauldron.org
                                 </a>
                                 <span>·</span>
                                 <a href="https://www.linkedin.com/in/muhammad-fahim-faisal" target="_blank" rel="noopener noreferrer" class="hover:text-ink dark:hover:text-chalk underline decoration-hairline underline-offset-4">
@@ -348,8 +302,8 @@
                             </div>
                             <div class="flex items-start gap-2.5">
                                 <span class="font-mono text-[10.5px] uppercase tracking-wider px-1.5 py-0.5 border border-line bg-surface dark:bg-darksurface text-ink dark:text-chalk shrink-0 mt-0.5">ICF</span>
-                                <a href="https://www.innovationcauldronfoundation.org" target="_blank" rel="noopener noreferrer" class="text-ink/90 dark:text-chalk/90 hover:underline underline-offset-4 leading-tight font-medium">
-                                    Innovation Cauldron Foundation
+                                <a href="https://www.innovationcauldron.org" target="_blank" rel="noopener noreferrer" class="text-ink/90 dark:text-chalk/90 hover:underline underline-offset-4 leading-tight font-medium">
+                                    Innovation Cauldron Foundation (www.innovationcauldron.org)
                                 </a>
                             </div>
                         </div>
@@ -364,7 +318,7 @@
                             I am an undergraduate researcher in <strong class="font-medium text-ink dark:text-chalk">Nanomaterials and Ceramic Engineering at BUET</strong> working at the intersection of functional materials science, venture building, and corporate strategy. My laboratory and modeling research focuses on solar-driven ceramic membrane distillation (<strong class="font-medium text-ink dark:text-chalk">Roder Bari</strong>), solid-state mesoporous ceramic nanocomposites (<strong class="font-medium text-ink dark:text-chalk">AuraStone</strong>), phytosynthesized metal-oxide supercapacitor electrodes, and photonic crystal fiber sensors.
                         </p>
                         <p>
-                            Alongside engineering research, I co-founded <a href="https://www.gryffindorlab.com" target="_blank" rel="noopener noreferrer" class="text-ink dark:text-chalk underline decoration-hairline hover:decoration-ink underline-offset-4">Gryffindor Lab</a> (a creative, web architecture, and business development agency), serve as Head of the Student Committee &amp; Convener at the <a href="https://www.innovationcauldronfoundation.org" target="_blank" rel="noopener noreferrer" class="text-ink dark:text-chalk underline decoration-hairline hover:decoration-ink underline-offset-4">Innovation Cauldron Foundation</a> (organizing the <strong class="font-medium text-ink dark:text-chalk">Nano Innovation Ideas Festival 2026</strong>), and drive B2B partnerships as Business Development Executive at <strong class="font-medium text-ink dark:text-chalk">AMC</strong>.
+                            Alongside engineering research, I co-founded <a href="https://www.gryffindorlab.com" target="_blank" rel="noopener noreferrer" class="text-ink dark:text-chalk underline decoration-hairline hover:decoration-ink underline-offset-4">Gryffindor Lab</a> (a creative, web architecture, and business development agency), serve as Head of the Student Committee &amp; Convener at the <a href="https://www.innovationcauldron.org" target="_blank" rel="noopener noreferrer" class="text-ink dark:text-chalk underline decoration-hairline hover:decoration-ink underline-offset-4">Innovation Cauldron Foundation</a> (organizing the <strong class="font-medium text-ink dark:text-chalk">Nano Innovation Ideas Festival 2026</strong>), and drive B2B partnerships as Business Development Executive at <strong class="font-medium text-ink dark:text-chalk">AMC</strong>.
                         </p>
                     </div>
 
@@ -380,11 +334,11 @@
                     Md. Fahim Faisal — engineering functional nanomaterials and building commercial ventures.
                 </h1>
                 <p class="mt-5 text-[15.5px] text-muted dark:text-dim leading-relaxed max-w-2xl">
-                    Co-Founder &amp; COO at <a href="https://www.gryffindorlab.com" target="_blank" rel="noopener noreferrer" class="text-ink dark:text-chalk underline underline-offset-4">Gryffindor Lab</a> · Head of Student Committee at <a href="https://www.innovationcauldronfoundation.org" target="_blank" rel="noopener noreferrer" class="text-ink dark:text-chalk underline underline-offset-4">Innovation Cauldron Foundation</a> · Business Development Executive at AMC · Undergraduate Researcher in Nanomaterials &amp; Ceramic Engineering at BUET.
+                    Co-Founder &amp; COO at <a href="https://www.gryffindorlab.com" target="_blank" rel="noopener noreferrer" class="text-ink dark:text-chalk underline underline-offset-4">Gryffindor Lab</a> · Head of Student Committee at <a href="https://www.innovationcauldron.org" target="_blank" rel="noopener noreferrer" class="text-ink dark:text-chalk underline underline-offset-4">Innovation Cauldron Foundation</a> · Business Development Executive at AMC · Undergraduate Researcher in Nanomaterials &amp; Ceramic Engineering at BUET.
                 </p>
                 <div class="mt-6 flex flex-wrap items-center gap-4 text-[13.5px]">
                     <a href="#contact" class="px-4 py-2 bg-ink text-paper dark:bg-chalk dark:text-carbon font-medium">Get in touch</a>
-                    <button type="button" onclick="openCvModal()" class="px-4 py-2 border border-line text-ink dark:text-chalk">Curriculum Vitae</button>
+                    <button type="button" onclick="openCvModal()" class="px-4 py-2 border border-line text-ink dark:text-chalk">View CV</button>
                 </div>
             </div>
 
@@ -489,8 +443,8 @@
                         </div>
                         <div class="md:col-span-7 text-[14.5px] text-muted dark:text-dim leading-relaxed">
                             <span class="text-ink/90 dark:text-chalk/90">Nano Innovation Ideas Festival 2026</span> — Spearheaded student branch governance and organized the national nanotechnology &amp; deep-tech innovation showcase at BUET.
-                            <a href="https://www.innovationcauldronfoundation.org" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="inline-block ml-1 text-ink dark:text-chalk underline decoration-hairline hover:decoration-ink underline-offset-4">
-                                www.innovationcauldronfoundation.org ↗
+                            <a href="https://www.innovationcauldron.org" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="inline-block ml-1 text-ink dark:text-chalk underline decoration-hairline hover:decoration-ink underline-offset-4">
+                                www.innovationcauldron.org ↗
                             </a>
                         </div>
                         <div class="md:col-span-1 text-right font-mono text-[14px] text-muted dark:text-dim" id="work-3-indicator">+</div>
@@ -501,7 +455,7 @@
                                 Serves as Head of the Student Committee and Convener of the Student Branch Ad Hoc Committee, mobilizing university researchers, industry evaluators, and academic leaders to translate laboratory nanotechnology into scalable ventures.
                             </p>
                             <p class="font-mono text-[11.5px] text-ink dark:text-chalk">
-                                National STEM Governance · Nano Innovation Ideas Festival · www.innovationcauldronfoundation.org
+                                National STEM Governance · Nano Innovation Ideas Festival · www.innovationcauldron.org
                             </p>
                         </div>
                     </div>
@@ -563,7 +517,7 @@
                     </div>
                 </article>
 
-                <!-- 6. PCF Optical Sensor Modeling & AMC -->
+                <!-- 6. PCF Optical Sensor Modeling -->
                 <article class="work-item" data-category="rd">
                     <div onclick="toggleWork('work-6')" class="w-full text-left py-5 px-3 -mx-3 editorial-row grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 items-baseline cursor-pointer">
                         <div class="md:col-span-4">
@@ -608,7 +562,7 @@
             </div>
 
             <div class="border-t border-line divide-y divide-hairline dark:divide-darkline border-b">
-                <div class="py-4.5 py-5 grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 items-baseline">
+                <div class="py-5 grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 items-baseline">
                     <div class="md:col-span-4">
                         <div class="text-[15px] font-medium text-ink dark:text-chalk">ICChE 2026</div>
                         <div class="font-mono text-[11.5px] text-muted dark:text-dim">Oral &amp; Poster · Paper ID: 230 · Dec 2026</div>
@@ -625,6 +579,16 @@
                     </div>
                     <div class="md:col-span-8 text-[14.5px] text-muted dark:text-dim">
                         1st International Conference on Environmental Sustainability and Greener Earth (American Chemical Society Bangladesh Chapter) — Sustainable nanomaterials for clean energy and environmental remediation.
+                    </div>
+                </div>
+
+                <div class="py-5 grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 items-baseline">
+                    <div class="md:col-span-4">
+                        <div class="text-[15px] font-medium text-ink dark:text-chalk">Ongoing Laboratory &amp; Simulation R&amp;D</div>
+                        <div class="font-mono text-[11.5px] text-muted dark:text-dim">BUET NCE · 2025 – 2026</div>
+                    </div>
+                    <div class="md:col-span-8 text-[14.5px] text-muted dark:text-dim">
+                        <span class="text-ink dark:text-chalk font-medium">Roder Bari</span> (solar-powered ceramic membrane distillation with rice-husk silica nanoparticles) · <span class="text-ink dark:text-chalk font-medium">AuraStone</span> (mesoporous ceramic nanocomposite diffuser) · <span class="text-ink dark:text-chalk font-medium">Phytosynthesized Metal-Oxide Nanostructures</span> for supercapacitors · <span class="text-ink dark:text-chalk font-medium">COMSOL Photonic Crystal Fiber</span> sensor modeling.
                     </div>
                 </div>
             </div>
@@ -649,12 +613,25 @@
                 <div class="py-4 grid grid-cols-1 md:grid-cols-12 gap-1.5 md:gap-6 items-baseline">
                     <div class="md:col-span-5 font-medium text-ink dark:text-chalk">
                         <span>Innovation Cauldron Foundation</span>
-                        <a href="https://www.innovationcauldronfoundation.org" target="_blank" rel="noopener noreferrer" class="block font-mono text-[11.5px] font-normal text-muted dark:text-dim underline underline-offset-4 hover:text-ink dark:hover:text-chalk">
-                            www.innovationcauldronfoundation.org ↗
+                        <a href="https://www.innovationcauldron.org" target="_blank" rel="noopener noreferrer" class="block font-mono text-[11.5px] font-normal text-muted dark:text-dim underline underline-offset-4 hover:text-ink dark:hover:text-chalk">
+                            www.innovationcauldron.org ↗
                         </a>
                     </div>
                     <div class="md:col-span-7 text-muted dark:text-dim">
                         <span class="text-ink dark:text-chalk">Head of the Student Committee &amp; Convener of the Student Branch Ad Hoc Committee</span> · Organized Nano Innovation Ideas Festival 2026
+                    </div>
+                </div>
+
+                <!-- Gryffindor Lab -->
+                <div class="py-4 grid grid-cols-1 md:grid-cols-12 gap-1.5 md:gap-6 items-baseline">
+                    <div class="md:col-span-5 font-medium text-ink dark:text-chalk">
+                        <span>Gryffindor Lab</span>
+                        <a href="https://www.gryffindorlab.com" target="_blank" rel="noopener noreferrer" class="block font-mono text-[11.5px] font-normal text-muted dark:text-dim underline underline-offset-4 hover:text-ink dark:hover:text-chalk">
+                            www.gryffindorlab.com ↗
+                        </a>
+                    </div>
+                    <div class="md:col-span-7 text-muted dark:text-dim">
+                        <span class="text-ink dark:text-chalk">Co-Founder &amp; Chief Operating Officer (COO)</span> · Full-stack digital product architecture, commercial cinematography &amp; strategic brand growth
                     </div>
                 </div>
 
@@ -782,8 +759,8 @@
                     </div>
                     <div class="flex items-baseline justify-between py-2 border-b border-line">
                         <span class="text-muted dark:text-dim">Innovation Cauldron Foundation</span>
-                        <a href="https://www.innovationcauldronfoundation.org" target="_blank" rel="noopener noreferrer" class="text-ink dark:text-chalk font-medium hover:underline underline-offset-4">
-                            www.innovationcauldronfoundation.org ↗
+                        <a href="https://www.innovationcauldron.org" target="_blank" rel="noopener noreferrer" class="text-ink dark:text-chalk font-medium hover:underline underline-offset-4">
+                            www.innovationcauldron.org ↗
                         </a>
                     </div>
                     <div class="flex items-baseline justify-between py-2 border-b border-line">
@@ -846,11 +823,7 @@
                 <p>© 2026 Md. Fahim Faisal · Dhaka, Bangladesh</p>
                 <div class="flex items-center gap-3 no-print">
                     <button type="button" onclick="openCvModal()" class="hover:text-ink dark:hover:text-chalk underline underline-offset-4">
-                        Curriculum Vitae
-                    </button>
-                    <span>·</span>
-                    <button type="button" onclick="triggerPhotoPicker()" class="hover:text-ink dark:hover:text-chalk underline underline-offset-4">
-                        Embed Portrait Photo
+                        View Curriculum Vitae
                     </button>
                 </div>
             </div>
@@ -859,18 +832,30 @@
     </main>
 
     <!-- ===================================================================
-         CLEAN CV MODAL
+         CLEAN CV MODAL ("View CV")
          =================================================================== -->
     <div id="cvModal" class="fixed inset-0 z-50 hidden bg-ink/60 backdrop-blur-xs flex items-center justify-center p-4 no-print">
         <div class="bg-paper dark:bg-carbon border border-line max-w-2xl w-full max-h-[88vh] overflow-y-auto p-6 sm:p-8 shadow-lg">
             <div class="flex items-start justify-between gap-4 border-b border-line pb-4">
-                <div>
-                    <h3 class="text-xl font-semibold text-ink dark:text-chalk">
-                        Md. Fahim Faisal
-                    </h3>
-                    <p class="text-[13px] text-muted dark:text-dim mt-0.5">
-                        B.Sc. in Nanomaterials &amp; Ceramic Engineering @ BUET · Co-Founder @ Gryffindor Lab · Head of Student Committee @ Innovation Cauldron Foundation
-                    </p>
+                <div class="flex items-center gap-3.5">
+                    <div class="w-12 h-12 rounded-full border border-line overflow-hidden bg-surface dark:bg-darksurface shrink-0">
+                        <img
+                            src="me.jpg"
+                            data-local-uri="file:///C:/Users/User/Downloads/me.jpg"
+                            data-local-win="C:\Users\User\Downloads\me.jpg"
+                            alt="Md. Fahim Faisal"
+                            class="w-full h-full object-cover object-top"
+                            onerror="handleLockedPortraitError(this)"
+                        >
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-ink dark:text-chalk">
+                            Md. Fahim Faisal
+                        </h3>
+                        <p class="text-[13px] text-muted dark:text-dim mt-0.5">
+                            B.Sc. in Nanomaterials &amp; Ceramic Engineering @ BUET · Co-Founder @ Gryffindor Lab · Head of Student Committee @ Innovation Cauldron Foundation
+                        </p>
+                    </div>
                 </div>
                 <div class="flex items-center gap-2 shrink-0">
                     <button
@@ -894,15 +879,15 @@
                 <div>
                     <div class="font-mono text-[11px] uppercase tracking-wider text-ink dark:text-chalk mb-1">Profile</div>
                     <p>
-                        Undergraduate researcher in Nanomaterials and Ceramic Engineering at BUET, Co-Founder &amp; COO of Gryffindor Lab (www.gryffindorlab.com), Head of the Student Committee at Innovation Cauldron Foundation (www.innovationcauldronfoundation.org), and Business Development Executive at AMC.
+                        Undergraduate researcher in Nanomaterials and Ceramic Engineering at BUET, Co-Founder &amp; COO of Gryffindor Lab (<a href="https://www.gryffindorlab.com" target="_blank" rel="noopener noreferrer" class="underline underline-offset-4 text-ink dark:text-chalk">www.gryffindorlab.com</a>), Head of the Student Committee at Innovation Cauldron Foundation (<a href="https://www.innovationcauldron.org" target="_blank" rel="noopener noreferrer" class="underline underline-offset-4 text-ink dark:text-chalk">www.innovationcauldron.org</a>), and Business Development Executive at AMC.
                     </p>
                 </div>
                 <div>
                     <div class="font-mono text-[11px] uppercase tracking-wider text-ink dark:text-chalk mb-1">Selected Work &amp; Research</div>
                     <ul class="space-y-1.5">
                         <li><strong class="text-ink dark:text-chalk">Roder Bari (2026):</strong> Patent-pending solar-powered ceramic membrane distillation system with rice husk silica nanocoatings.</li>
-                        <li><strong class="text-ink dark:text-chalk">Gryffindor Lab (2026 – Present):</strong> Co-Founder &amp; COO — Web/app architecture, cinematography &amp; brand growth (www.gryffindorlab.com).</li>
-                        <li><strong class="text-ink dark:text-chalk">Innovation Cauldron Foundation (2026):</strong> Head of Student Committee &amp; Convener — Organized Nano Innovation Ideas Festival 2026 (www.innovationcauldronfoundation.org).</li>
+                        <li><strong class="text-ink dark:text-chalk">Gryffindor Lab (2026 – Present):</strong> Co-Founder &amp; COO — Web/app architecture, cinematography &amp; brand growth (<a href="https://www.gryffindorlab.com" target="_blank" rel="noopener noreferrer" class="underline underline-offset-4 text-ink dark:text-chalk">www.gryffindorlab.com</a>).</li>
+                        <li><strong class="text-ink dark:text-chalk">Innovation Cauldron Foundation (2026):</strong> Head of Student Committee &amp; Convener — Organized Nano Innovation Ideas Festival 2026 (<a href="https://www.innovationcauldron.org" target="_blank" rel="noopener noreferrer" class="underline underline-offset-4 text-ink dark:text-chalk">www.innovationcauldron.org</a>).</li>
                         <li><strong class="text-ink dark:text-chalk">AuraStone &amp; Energy Storage R&amp;D:</strong> Mesoporous ceramic repellent diffuser, phytosynthesized supercapacitor electrodes, and COMSOL PCF sensor modeling.</li>
                         <li><strong class="text-ink dark:text-chalk">Publications:</strong> ICChE 2026 (Oral &amp; Poster, Paper ID: 230) · ICESGE-2025 (ACS Bangladesh Oral Presentation).</li>
                     </ul>
@@ -911,128 +896,27 @@
         </div>
     </div>
 
-    <!-- Interactive Script + 1-Click Photo Base64 Embedder -->
+    <!-- Interactive Script (Locked Portrait Fallback + Theme & Filter Controls) -->
     <script>
-        const DEFAULT_EMBEDDED_PHOTO = "";
-        let currentEmbeddedPhotoDataUrl = DEFAULT_EMBEDDED_PHOTO;
-
-        window.addEventListener('DOMContentLoaded', () => {
-            const imgEl = document.getElementById('profile-img');
-            const fallbackEl = document.getElementById('profile-fallback');
-
-            if (DEFAULT_EMBEDDED_PHOTO && DEFAULT_EMBEDDED_PHOTO.startsWith('data:image')) {
-                imgEl.src = DEFAULT_EMBEDDED_PHOTO;
-                imgEl.classList.remove('hidden');
-                fallbackEl.classList.add('hidden');
+        function handleLockedPortraitError(imgEl) {
+            const localUri = imgEl.getAttribute('data-local-uri');
+            if (localUri) {
+                imgEl.removeAttribute('data-local-uri');
+                imgEl.src = localUri;
                 return;
             }
-
-            try {
-                const savedPhoto = localStorage.getItem('md_fahim_faisal_portrait');
-                if (savedPhoto && savedPhoto.startsWith('data:image')) {
-                    currentEmbeddedPhotoDataUrl = savedPhoto;
-                    imgEl.src = savedPhoto;
-                    imgEl.classList.remove('hidden');
-                    fallbackEl.classList.add('hidden');
-                }
-            } catch (e) {}
-        });
-
-        function handleProfileImageError(imgEl) {
-            const fallbackSrc = imgEl.getAttribute('data-fallback');
-            if (fallbackSrc && imgEl.src.indexOf(fallbackSrc) === -1) {
-                imgEl.removeAttribute('data-fallback');
-                imgEl.src = fallbackSrc;
+            const localWin = imgEl.getAttribute('data-local-win');
+            if (localWin) {
+                imgEl.removeAttribute('data-local-win');
+                imgEl.src = localWin;
                 return;
             }
             const fallbackEl = document.getElementById('profile-fallback');
-            if (imgEl && fallbackEl) {
+            if (imgEl && fallbackEl && imgEl.id === 'profile-img') {
                 imgEl.classList.add('hidden');
                 fallbackEl.classList.remove('hidden');
-            }
-        }
-
-        function triggerPhotoPicker() {
-            const input = document.getElementById('photoFileInput');
-            if (input) input.click();
-        }
-
-        function handlePhotoSelected(event) {
-            const file = event.target.files && event.target.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const tempImg = new Image();
-                tempImg.onload = function() {
-                    const canvas = document.createElement('canvas');
-                    const size = 440;
-                    canvas.width = size;
-                    canvas.height = size;
-                    const ctx = canvas.getContext('2d');
-
-                    const minSide = Math.min(tempImg.width, tempImg.height);
-                    const sx = (tempImg.width - minSide) / 2;
-                    const sy = Math.max(0, (tempImg.height - minSide) * 0.12);
-
-                    ctx.drawImage(tempImg, sx, sy, minSide, minSide, 0, 0, size, size);
-                    const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.88);
-
-                    currentEmbeddedPhotoDataUrl = compressedDataUrl;
-
-                    const imgEl = document.getElementById('profile-img');
-                    const fallbackEl = document.getElementById('profile-fallback');
-                    if (imgEl && fallbackEl) {
-                        imgEl.src = compressedDataUrl;
-                        imgEl.classList.remove('hidden');
-                        fallbackEl.classList.add('hidden');
-                    }
-
-                    try {
-                        localStorage.setItem('md_fahim_faisal_portrait', compressedDataUrl);
-                    } catch (err) {}
-
-                    const banner = document.getElementById('photoReadyBanner');
-                    if (banner) {
-                        banner.classList.remove('hidden');
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }
-                };
-                tempImg.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function copyFullHtmlWithEmbeddedPhoto() {
-            if (!currentEmbeddedPhotoDataUrl) {
-                triggerPhotoPicker();
-                return;
-            }
-
-            let rawHtml = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
-            rawHtml = rawHtml.replace(
-                /const DEFAULT_EMBEDDED_PHOTO = ".*?";/,
-                `const DEFAULT_EMBEDDED_PHOTO = "${currentEmbeddedPhotoDataUrl}";`
-            );
-            rawHtml = rawHtml.replace(
-                'id="photoReadyBanner" class="bg-ink',
-                'id="photoReadyBanner" class="hidden bg-ink'
-            );
-
-            const temp = document.createElement('textarea');
-            temp.value = rawHtml;
-            document.body.appendChild(temp);
-            temp.select();
-            try {
-                document.execCommand('copy');
-            } catch (e) {}
-            document.body.removeChild(temp);
-
-            const btn = document.getElementById('copyHtmlWithPhotoBtn');
-            if (btn) {
-                const orig = btn.textContent;
-                btn.textContent = '✓ Copied! Paste into GitHub index.html';
-                setTimeout(() => { btn.textContent = orig; }, 4500);
+            } else if (imgEl) {
+                imgEl.classList.add('hidden');
             }
         }
 
@@ -1055,7 +939,7 @@
             if (showingCard) {
                 card.classList.add('hidden');
                 minimal.classList.remove('hidden');
-                if (btn) btn.textContent = 'Header: Minimal';
+                if (btn) btn.textContent = 'Header: Text';
             } else {
                 card.classList.remove('hidden');
                 minimal.classList.add('hidden');
