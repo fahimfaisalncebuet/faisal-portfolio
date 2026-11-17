@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Md. Fahim Faisal — Materials Engineering & Ventures</title>
-    <meta name="description" content="Md. Fahim Faisal — Undergraduate researcher in Nanomaterials and Ceramic Engineering at BUET and Co-Founder at Gryffindor Lab.">
+    <title>Md. Fahim Faisal — Materials Engineering, Ventures &amp; Strategy</title>
+    <meta name="description" content="Md. Fahim Faisal (He/Him) — Co-Founder @ Gryffindor Lab · Head of Student Committee @ Innovation Cauldron Foundation · Business Development Executive @ AMC · Undergraduate @ BUET (Nanomaterials & Ceramic Engineering).">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Google Fonts: Inter -->
+    <!-- Google Fonts: Inter (Primary Editorial Sans) & JetBrains Mono (Technical Metadata) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
@@ -20,17 +20,20 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
                     },
                     colors: {
                         paper: '#FAF9F5',
+                        surface: '#F2F0E8',
                         ink: '#111111',
-                        muted: '#686763',
+                        muted: '#5A5955',
                         hairline: '#E4E3DD',
-                        carbon: '#0D0D0D',
-                        chalk: '#F2F1EC',
-                        dim: '#888782',
-                        darkline: '#222220',
+                        carbon: '#0E0E0E',
+                        darksurface: '#161614',
+                        chalk: '#F3F2EE',
+                        dim: '#9A9892',
+                        darkline: '#242422',
                     }
                 }
             }
@@ -38,7 +41,6 @@
     </script>
 
     <style>
-        /* Editorial Typography & Rhythm */
         body {
             background-color: #FAF9F5;
             color: #111111;
@@ -48,35 +50,38 @@
         }
 
         html.dark body {
-            background-color: #0D0D0D;
-            color: #F2F1EC;
+            background-color: #0E0E0E;
+            color: #F3F2EE;
         }
 
-        .tracking-editorial {
-            letter-spacing: -0.035em;
-        }
-
-        .tracking-sub {
-            letter-spacing: -0.015em;
-        }
-
-        /* Hairline Borders */
+        /* 1px Hairline Border Token */
         .border-line {
             border-color: #E4E3DD;
         }
         html.dark .border-line {
-            border-color: #222220;
+            border-color: #242422;
         }
 
-        /* Subtle Interactive Row Hover */
+        /* Subtle Editorial Row Hover (gryffindorlab.com style) */
         .editorial-row {
-            transition: background-color 0.15s ease, padding-left 0.15s ease;
+            transition: background-color 0.15s ease;
         }
         .editorial-row:hover {
-            background-color: #F3F1EC;
+            background-color: #F2F0E8;
         }
         html.dark .editorial-row:hover {
-            background-color: #141413;
+            background-color: #161614;
+        }
+
+        /* Filter Link Active State */
+        .filter-btn.active {
+            color: #111111;
+            text-decoration: underline;
+            text-underline-offset: 6px;
+            font-weight: 500;
+        }
+        html.dark .filter-btn.active {
+            color: #F3F2EE;
         }
 
         /* Minimalist Selection */
@@ -85,11 +90,11 @@
             color: #FAF9F5;
         }
         html.dark ::selection {
-            background-color: #F2F1EC;
-            color: #0D0D0D;
+            background-color: #F3F2EE;
+            color: #0E0E0E;
         }
 
-        /* Clean Print Layout for Academic / Corporate CV */
+        /* Clean Print Stylesheet for CV Export */
         @media print {
             .no-print {
                 display: none !important;
@@ -98,7 +103,7 @@
                 background-color: #FFFFFF !important;
                 color: #000000 !important;
             }
-            .work-drawer, .faq-answer {
+            .work-drawer {
                 display: block !important;
             }
             a {
@@ -109,263 +114,478 @@
 </head>
 <body class="font-sans text-[15px] leading-relaxed transition-colors duration-150">
 
-    <!-- Top Navigation -->
-    <header class="sticky top-0 z-40 bg-paper dark:bg-carbon border-b border-line no-print">
-        <div class="max-w-5xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
-            <a href="#top" class="font-medium text-ink dark:text-chalk tracking-sub text-[15px]">
-                Md. Fahim Faisal
-            </a>
+    <!-- Hidden File Input for Selecting "Md. Fahim Faisal_InsightFellow (2).jpg" -->
+    <input type="file" id="photoFileInput" accept="image/*" class="hidden" onchange="handlePhotoSelected(event)">
 
-            <!-- Desktop Navigation -->
-            <nav class="hidden md:flex items-center space-x-7 text-[14px] text-muted dark:text-dim">
+    <!-- Sticky Minimal Top Navigation (gryffindorlab.com Editorial Header) -->
+    <header class="sticky top-0 z-40 bg-paper/95 dark:bg-carbon/95 backdrop-blur-sm border-b border-line no-print">
+        <div class="max-w-4xl mx-auto px-5 sm:px-8 h-14 flex items-center justify-between">
+            <!-- Left Brand Name -->
+            <div class="flex items-center space-x-3">
+                <a href="#top" class="font-medium text-[15px] tracking-tight text-ink dark:text-chalk">
+                    Md. Fahim Faisal
+                </a>
+                <span class="text-muted dark:text-dim hidden sm:inline">·</span>
+                <span class="text-[13px] text-muted dark:text-dim hidden sm:inline">BUET &amp; Gryffindor Lab</span>
+            </div>
+
+            <!-- Right Desktop Navigation -->
+            <nav class="hidden md:flex items-center space-x-6 text-[13.5px] text-muted dark:text-dim">
                 <a href="#work" class="hover:text-ink dark:hover:text-chalk transition-colors">Work</a>
                 <a href="#research" class="hover:text-ink dark:hover:text-chalk transition-colors">Research</a>
-                <a href="#experience" class="hover:text-ink dark:hover:text-chalk transition-colors">Experience</a>
-                <a href="#questions" class="hover:text-ink dark:hover:text-chalk transition-colors">Questions</a>
+                <a href="#leadership" class="hover:text-ink dark:hover:text-chalk transition-colors">Leadership</a>
                 <a href="#contact" class="hover:text-ink dark:hover:text-chalk transition-colors">Contact</a>
-                <span class="text-hairline dark:text-darkline select-none">·</span>
-                <button id="themeToggleBtn" onclick="toggleTheme()" class="text-ink dark:text-chalk hover:opacity-70 transition-opacity">
+                <span>·</span>
+                <button
+                    type="button"
+                    id="headerStyleBtn"
+                    onclick="toggleHeroLayout()"
+                    class="hover:text-ink dark:hover:text-chalk transition-colors"
+                    title="Switch between Proportional LinkedIn Profile Card and Pure Minimal Hero"
+                >
+                    Header: Card
+                </button>
+                <span>·</span>
+                <button
+                    id="themeToggleBtn"
+                    type="button"
+                    onclick="toggleTheme()"
+                    class="text-ink dark:text-chalk font-medium hover:underline underline-offset-4 transition-colors"
+                >
                     Dark
                 </button>
             </nav>
 
             <!-- Mobile Navigation Controls -->
-            <div class="flex md:hidden items-center space-x-5 text-[14px]">
-                <button id="themeToggleMobile" onclick="toggleTheme()" class="text-muted dark:text-dim hover:text-ink dark:hover:text-chalk">
+            <div class="flex md:hidden items-center space-x-4 text-[13px]">
+                <button
+                    type="button"
+                    id="themeToggleBtnMobile"
+                    onclick="toggleTheme()"
+                    class="text-muted dark:text-dim hover:text-ink dark:hover:text-chalk"
+                >
                     Dark
                 </button>
-                <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="text-ink dark:text-chalk font-medium">
+                <button
+                    id="mobileMenuBtn"
+                    type="button"
+                    onclick="toggleMobileMenu()"
+                    class="text-ink dark:text-chalk font-medium"
+                >
                     Menu
                 </button>
             </div>
         </div>
 
-        <!-- Mobile Dropdown (Minimal Hairline List) -->
-        <div id="mobileMenu" class="hidden md:hidden border-t border-line bg-paper dark:bg-carbon px-5 py-4 space-y-3 text-[15px]">
-            <a href="#work" onclick="toggleMobileMenu()" class="block py-1 text-ink dark:text-chalk">Work</a>
-            <a href="#research" onclick="toggleMobileMenu()" class="block py-1 text-ink dark:text-chalk">Research</a>
-            <a href="#experience" onclick="toggleMobileMenu()" class="block py-1 text-ink dark:text-chalk">Experience</a>
-            <a href="#questions" onclick="toggleMobileMenu()" class="block py-1 text-ink dark:text-chalk">Questions</a>
-            <a href="#contact" onclick="toggleMobileMenu()" class="block py-1 text-ink dark:text-chalk">Contact</a>
+        <!-- Mobile Menu Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden border-t border-line bg-paper dark:bg-carbon px-5 py-4 space-y-2.5 text-[14px]">
+            <a href="#work" onclick="toggleMobileMenu()" class="block py-1 text-ink dark:text-chalk">Selected work.</a>
+            <a href="#research" onclick="toggleMobileMenu()" class="block py-1 text-ink dark:text-chalk">Research &amp; publications.</a>
+            <a href="#leadership" onclick="toggleMobileMenu()" class="block py-1 text-ink dark:text-chalk">Leadership &amp; affiliations.</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block py-1 text-ink dark:text-chalk">Contact.</a>
+            <div class="pt-2 border-t border-line flex items-center justify-between text-[13px] text-muted dark:text-dim">
+                <button type="button" onclick="toggleHeroLayout(); toggleMobileMenu();" class="underline underline-offset-4">
+                    Switch Header Style
+                </button>
+                <button type="button" onclick="triggerPhotoPicker(); toggleMobileMenu();" class="underline underline-offset-4">
+                    Embed Photo
+                </button>
+            </div>
         </div>
     </header>
 
-    <!-- Main Editorial Container -->
-    <main id="top" class="max-w-5xl mx-auto px-5 sm:px-8">
-
-        <!-- 1. HERO SECTION -->
-        <section class="pt-16 sm:pt-28 pb-16 sm:pb-24">
-            <p class="text-[13px] text-muted dark:text-dim mb-6 tracking-wide">
-                Materials Engineering · Ventures · Dhaka
-            </p>
-
-            <h1 class="text-3xl sm:text-5xl md:text-[56px] font-medium tracking-editorial text-ink dark:text-chalk leading-[1.08] max-w-4xl">
-                Engineering functional ceramics and building independent digital ventures.
-            </h1>
-
-            <p class="mt-8 text-base sm:text-[18px] text-muted dark:text-dim leading-[1.65] max-w-2xl font-normal">
-                Undergraduate researcher in Nanomaterials and Ceramic Engineering at BUET and Co-Founder at Gryffindor Lab. Working across off-grid membrane desalination, solid-state nanocomposites, and creative studio direction, from first hypothesis to final file.
-            </p>
-
-            <div class="mt-10 flex flex-wrap items-center gap-x-7 gap-y-4 no-print">
-                <a href="#contact" class="inline-block px-6 py-3 bg-ink text-paper dark:bg-chalk dark:text-carbon text-[14px] font-medium hover:opacity-85 transition-opacity">
-                    Start a conversation
-                </a>
-                <a href="https://www.linkedin.com/in/muhammad-fahim-faisal" target="_blank" rel="noopener noreferrer" class="text-[14px] text-ink dark:text-chalk hover:text-muted dark:hover:text-dim transition-colors">
-                    LinkedIn profile ↗
-                </a>
-                <a href="https://www.gryffindorlab.com" target="_blank" rel="noopener noreferrer" class="text-[14px] text-ink dark:text-chalk hover:text-muted dark:hover:text-dim transition-colors">
-                    Gryffindor Lab ↗
-                </a>
+    <!-- One-Click Photo Embed Notification Banner (Shows when user selects their photo) -->
+    <div id="photoReadyBanner" class="hidden bg-ink text-paper dark:bg-chalk dark:text-carbon border-b border-line no-print">
+        <div class="max-w-4xl mx-auto px-5 sm:px-8 py-3 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[13px]">
+            <div>
+                <span class="font-medium">Portrait embedded into page.</span>
+                <span class="opacity-80 ml-1">Copy the self-contained <code class="px-1 py-0.5 bg-paper/15 dark:bg-carbon/15">index.html</code> code and paste it into GitHub.</span>
             </div>
-        </section>
+            <div class="flex items-center gap-3 shrink-0">
+                <button
+                    type="button"
+                    id="copyHtmlWithPhotoBtn"
+                    onclick="copyFullHtmlWithEmbeddedPhoto()"
+                    class="px-3.5 py-1.5 bg-paper text-ink dark:bg-carbon dark:text-chalk font-medium text-[12.5px] hover:opacity-90 transition-opacity"
+                >
+                    Copy Complete HTML (With Photo Embedded)
+                </button>
+                <button
+                    type="button"
+                    onclick="document.getElementById('photoReadyBanner').classList.add('hidden')"
+                    class="opacity-70 hover:opacity-100 px-1"
+                >
+                    ✕
+                </button>
+            </div>
+        </div>
+    </div>
 
-        <!-- 2. CAPABILITIES / DISCIPLINES -->
-        <section class="border-t border-line py-12 sm:py-16">
-            <div class="divide-y divide-hairline dark:divide-darkline border-b border-line">
-                <!-- Row 1 -->
-                <div class="py-6 grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-8 items-baseline">
-                    <h2 class="md:col-span-4 text-[16px] font-medium text-ink dark:text-chalk tracking-sub">
-                        Materials &amp; R&amp;D.
-                    </h2>
-                    <p class="md:col-span-8 text-[15px] text-muted dark:text-dim leading-relaxed">
-                        Ceramic membrane distillation · Mesoporous nanocomposites · Metal-oxide supercapacitors · COMSOL Multiphysics · SEM &amp; particle size characterization.
-                    </p>
+    <!-- Main Single-Column Editorial Container (max-w-4xl, gryffindorlab.com proportions) -->
+    <main id="top" class="max-w-4xl mx-auto px-5 sm:px-8 pb-24">
+
+        <!-- ===================================================================
+             ENTRY INTERFACE: PROPORTIONAL LINKEDIN-STYLE PROFILE CARD
+             + OPTIONAL PURE MINIMAL GRYFFINDORLAB HERO TOGGLE
+             =================================================================== -->
+        <section id="about" class="pt-8 sm:pt-12 pb-14 border-b border-line">
+
+            <!-- MODE A: Proportional LinkedIn-Style Entry Card (Default) -->
+            <div id="linkedinHeroCard" class="border border-line bg-paper dark:bg-carbon">
+
+                <!-- Subtle Minimal Architectural Cover Banner (76px–88px) -->
+                <div class="h-20 sm:h-24 w-full bg-surface dark:bg-darksurface border-b border-line relative overflow-hidden flex items-center justify-end px-5 sm:px-7">
+                    <div class="absolute inset-0 opacity-35 dark:opacity-20" style="background-image: linear-gradient(to right, #D5D3C8 1px, transparent 1px), linear-gradient(to bottom, #D5D3C8 1px, transparent 1px); background-size: 28px 28px;"></div>
+                    <span class="relative z-10 font-mono text-[11px] tracking-wider uppercase text-muted dark:text-dim hidden sm:inline">
+                        Nanomaterials &amp; Ceramic Engineering · Ventures · Corporate Strategy
+                    </span>
                 </div>
 
-                <!-- Row 2 -->
-                <div class="py-6 grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-8 items-baseline">
-                    <h2 class="md:col-span-4 text-[16px] font-medium text-ink dark:text-chalk tracking-sub">
-                        Creative Studio &amp; Web.
-                    </h2>
-                    <p class="md:col-span-8 text-[15px] text-muted dark:text-dim leading-relaxed">
-                        Co-Founder at Gryffindor Lab · Web design and development · Cinematography and pacing · Brand identity systems · Pitch decks.
-                    </p>
-                </div>
+                <!-- Card Body -->
+                <div class="px-5 sm:px-8 pb-7 sm:pb-8">
 
-                <!-- Row 3 -->
-                <div class="py-6 grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-8 items-baseline">
-                    <h2 class="md:col-span-4 text-[16px] font-medium text-ink dark:text-chalk tracking-sub">
-                        Strategy &amp; Partnerships.
-                    </h2>
-                    <p class="md:col-span-8 text-[15px] text-muted dark:text-dim leading-relaxed">
-                        B2B business development · Corporate sponsorship architecture · Stakeholder synthesis · Academic and technical communication.
-                    </p>
-                </div>
-            </div>
-        </section>
+                    <!-- Overlapping Proportional Avatar Row (96px - 108px) + Top Right Action Links -->
+                    <div class="flex flex-wrap items-end justify-between gap-4 -mt-12 sm:-mt-14 mb-5 relative z-10">
+                        <div
+                            onclick="triggerPhotoPicker()"
+                            title="Click to select or embed 'Md. Fahim Faisal_InsightFellow (2).jpg'"
+                            class="relative group w-24 h-24 sm:w-28 sm:h-28 rounded-full border-4 border-paper dark:border-carbon bg-surface dark:bg-darksurface overflow-hidden cursor-pointer shrink-0 shadow-xs"
+                        >
+                            <!-- Primary Portrait Image -->
+                            <img
+                                id="profile-img"
+                                src="Md.%20Fahim%20Faisal_InsightFellow%20(2).jpg"
+                                data-fallback="profile.jpg"
+                                alt="Md. Fahim Faisal"
+                                class="w-full h-full object-cover object-top"
+                                onerror="handleProfileImageError(this)"
+                            >
 
-        <!-- 3. SELECTED WORK -->
-        <section id="work" class="scroll-mt-20 py-14 sm:py-20">
-            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between mb-10 gap-2">
-                <h2 class="text-2xl sm:text-3xl font-medium tracking-editorial text-ink dark:text-chalk">
-                    Selected work.
-                </h2>
-                <p class="text-[13px] text-muted dark:text-dim">
-                    Click any row to read technical scope and methodology.
-                </p>
-            </div>
+                            <!-- Clean Minimal Initials Fallback if local image isn't loaded yet -->
+                            <div id="profile-fallback" class="hidden w-full h-full flex flex-col items-center justify-center bg-surface dark:bg-darksurface text-ink dark:text-chalk text-center p-2 select-none">
+                                <span class="font-medium text-lg tracking-tight">MFF</span>
+                                <span class="text-[10px] text-muted dark:text-dim leading-tight mt-0.5">Click to set photo</span>
+                            </div>
 
-            <div class="border-t border-line divide-y divide-hairline dark:divide-darkline border-b">
-
-                <!-- Work Item 1: Roder Bari -->
-                <article class="group">
-                    <button type="button" onclick="toggleWork('work-1')" class="w-full text-left py-7 px-2 -mx-2 editorial-row grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-8 items-baseline">
-                        <div class="md:col-span-4 flex items-baseline justify-between md:justify-start gap-3">
-                            <h3 class="text-[18px] font-medium text-ink dark:text-chalk tracking-sub">
-                                Roder Bari
-                            </h3>
-                            <span class="text-[12px] text-muted dark:text-dim">01</span>
+                            <!-- Hover Overlay -->
+                            <div class="no-print absolute inset-0 bg-ink/65 text-paper opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-center p-2">
+                                <span class="text-[10.5px] font-medium leading-tight">Upload / Embed Photo</span>
+                            </div>
                         </div>
-                        <div class="md:col-span-7 text-[15px] text-muted dark:text-dim leading-relaxed">
-                            <span class="text-ink dark:text-chalk font-medium">Patent-pending</span> · Solar-powered ceramic membrane distillation utilizing rice husk silica nanocoatings and local clay substrates for off-grid drinking water desalination and industrial wastewater recovery.
-                        </div>
-                        <div class="md:col-span-1 text-right text-[14px] text-muted dark:text-dim font-mono" id="work-1-indicator">
-                            +
-                        </div>
-                    </button>
-                    <div id="work-1" class="work-drawer hidden pb-8 pt-2 grid grid-cols-1 md:grid-cols-12 gap-6 text-[14px] text-muted dark:text-dim">
-                        <div class="md:col-start-5 md:col-span-8 space-y-4 border-l border-line pl-5">
-                            <p class="leading-relaxed">
-                                Designed to address salinity intrusion in coastal Bangladesh and industrial effluent recovery without grid electricity. Roder Bari pairs low-cost indigenous clay ceramic tubular/planar membranes with biogenic amorphous silica extracted from rice husk ash to engineer surface hydrophobicity and photothermal efficiency.
-                            </p>
-                            <p class="text-[13px] text-ink dark:text-chalk">
-                                Scope · Ceramic membrane fabrication · Rice husk silica extraction · Surface modification · Solar thermal desalination
-                            </p>
+
+                        <!-- Top Right Quick Links inside Card -->
+                        <div class="flex flex-wrap items-center gap-2 no-print pt-2">
+                            <a
+                                href="#contact"
+                                class="px-3.5 py-1.5 bg-ink text-paper dark:bg-chalk dark:text-carbon text-[12.5px] font-medium hover:opacity-90 transition-opacity"
+                            >
+                                Get in touch
+                            </a>
+                            <button
+                                type="button"
+                                onclick="openCvModal()"
+                                class="px-3.5 py-1.5 border border-line text-ink dark:text-chalk text-[12.5px] font-medium hover:bg-surface dark:hover:bg-darksurface transition-colors"
+                            >
+                                Curriculum Vitae
+                            </button>
+                            <button
+                                type="button"
+                                onclick="triggerPhotoPicker()"
+                                class="px-3 py-1.5 border border-line text-muted dark:text-dim hover:text-ink dark:hover:text-chalk text-[12px] transition-colors"
+                                title="Select Md. Fahim Faisal_InsightFellow (2).jpg from your computer to embed directly into this HTML file"
+                            >
+                                Embed Photo ↗
+                            </button>
                         </div>
                     </div>
-                </article>
 
-                <!-- Work Item 2: AuraStone -->
-                <article class="group">
-                    <button type="button" onclick="toggleWork('work-2')" class="w-full text-left py-7 px-2 -mx-2 editorial-row grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-8 items-baseline">
-                        <div class="md:col-span-4 flex items-baseline justify-between md:justify-start gap-3">
-                            <h3 class="text-[18px] font-medium text-ink dark:text-chalk tracking-sub">
-                                AuraStone
-                            </h3>
-                            <span class="text-[12px] text-muted dark:text-dim">02</span>
-                        </div>
-                        <div class="md:col-span-7 text-[15px] text-muted dark:text-dim leading-relaxed">
-                            <span class="text-ink dark:text-chalk font-medium">Materials engineering</span> · Solid-state mesoporous ceramic nanocomposite mosquito repellent engineered to regulate active vapor diffusion via Fick's First Law without electrical power.
-                        </div>
-                        <div class="md:col-span-1 text-right text-[14px] text-muted dark:text-dim font-mono" id="work-2-indicator">
-                            +
-                        </div>
-                    </button>
-                    <div id="work-2" class="work-drawer hidden pb-8 pt-2 grid grid-cols-1 md:grid-cols-12 gap-6 text-[14px] text-muted dark:text-dim">
-                        <div class="md:col-start-5 md:col-span-8 space-y-4 border-l border-line pl-5">
-                            <p class="leading-relaxed">
-                                Conventional liquid vaporizers rely on continuous electrical heating and exhibit non-linear evaporation spikes. AuraStone engineers interconnected mesopores and controlled pore tortuosity within a sintered ceramic nanocomposite matrix, governing steady-state spatial release of active repellent molecules strictly via Fick's First Law of Diffusion.
-                            </p>
-                            <p class="text-[13px] text-ink dark:text-chalk">
-                                Scope · Mesoporous silica-ceramic matrices · Controlled release kinetics · Pore size distribution · Zero-energy vector control
-                            </p>
-                        </div>
-                    </div>
-                </article>
+                    <!-- Two-Column LinkedIn-Style Header Grid: Left Identity / Right Organization Stack -->
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
 
-                <!-- Work Item 3: Gryffindor Lab -->
-                <article class="group">
-                    <button type="button" onclick="toggleWork('work-3')" class="w-full text-left py-7 px-2 -mx-2 editorial-row grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-8 items-baseline">
-                        <div class="md:col-span-4 flex items-baseline justify-between md:justify-start gap-3">
-                            <h3 class="text-[18px] font-medium text-ink dark:text-chalk tracking-sub">
-                                Gryffindor Lab
-                            </h3>
-                            <span class="text-[12px] text-muted dark:text-dim">03</span>
-                        </div>
-                        <div class="md:col-span-7 text-[15px] text-muted dark:text-dim leading-relaxed">
-                            <span class="text-ink dark:text-chalk font-medium">Creative studio</span> · Co-founded independent studio for web development, cinematography, video editing, and branding. One small team, from first cut to final file.
-                        </div>
-                        <div class="md:col-span-1 text-right text-[14px] text-muted dark:text-dim font-mono" id="work-3-indicator">
-                            +
-                        </div>
-                    </button>
-                    <div id="work-3" class="work-drawer hidden pb-8 pt-2 grid grid-cols-1 md:grid-cols-12 gap-6 text-[14px] text-muted dark:text-dim">
-                        <div class="md:col-start-5 md:col-span-8 space-y-4 border-l border-line pl-5">
-                            <p class="leading-relaxed">
-                                Built on the principle that businesses and creators shouldn't have to coordinate three different freelancers to launch one cohesive project. Gryffindor Lab handles custom responsive websites, web applications, commercial cinematography, colour grading, sound design, and visual identity systems under one roof.
+                        <!-- Left Column: Name, Headline, Location & Direct Links -->
+                        <div class="md:col-span-8">
+                            <div class="flex flex-wrap items-baseline gap-2">
+                                <h1 class="text-2xl sm:text-[28px] font-semibold tracking-tight text-ink dark:text-chalk leading-tight">
+                                    Md. Fahim Faisal
+                                </h1>
+                                <span class="text-[13.5px] text-muted dark:text-dim font-normal">(He/Him)</span>
+                            </div>
+
+                            <p class="mt-1.5 text-[15px] text-ink/90 dark:text-chalk/90 leading-snug">
+                                Co-Founder &amp; COO at Gryffindor Lab · Head of Student Committee at Innovation Cauldron Foundation · Business Development Executive at AMC · Nanomaterials &amp; Ceramic Engineering @ BUET
                             </p>
-                            <div class="flex flex-wrap items-center gap-6 pt-1">
-                                <span class="text-[13px] text-ink dark:text-chalk">Role · Co-Founder &amp; COO</span>
-                                <a href="https://www.gryffindorlab.com" target="_blank" rel="noopener noreferrer" class="text-[13px] text-ink dark:text-chalk underline underline-offset-4 hover:opacity-70">
-                                    Visit gryffindorlab.com ↗
+
+                            <p class="mt-2.5 text-[13px] text-muted dark:text-dim flex flex-wrap items-center gap-x-2 gap-y-1">
+                                <span>Dhaka, Bangladesh</span>
+                                <span>·</span>
+                                <a href="https://www.gryffindorlab.com" target="_blank" rel="noopener noreferrer" class="text-ink dark:text-chalk underline decoration-hairline hover:decoration-ink underline-offset-4">
+                                    www.gryffindorlab.com
+                                </a>
+                                <span>·</span>
+                                <a href="https://www.innovationcauldronfoundation.org" target="_blank" rel="noopener noreferrer" class="text-ink dark:text-chalk underline decoration-hairline hover:decoration-ink underline-offset-4">
+                                    www.innovationcauldronfoundation.org
+                                </a>
+                                <span>·</span>
+                                <a href="https://www.linkedin.com/in/muhammad-fahim-faisal" target="_blank" rel="noopener noreferrer" class="hover:text-ink dark:hover:text-chalk underline decoration-hairline underline-offset-4">
+                                    LinkedIn ↗
+                                </a>
+                            </p>
+                        </div>
+
+                        <!-- Right Column: LinkedIn-Style Institution & Venture Stack -->
+                        <div class="md:col-span-4 md:border-l border-line md:pl-5 space-y-2.5 pt-1 text-[12.5px]">
+                            <div class="flex items-start gap-2.5">
+                                <span class="font-mono text-[10.5px] uppercase tracking-wider px-1.5 py-0.5 border border-line bg-surface dark:bg-darksurface text-ink dark:text-chalk shrink-0 mt-0.5">BUET</span>
+                                <span class="text-ink/90 dark:text-chalk/90 leading-tight font-medium">
+                                    Bangladesh University of Engineering &amp; Technology
+                                </span>
+                            </div>
+                            <div class="flex items-start gap-2.5">
+                                <span class="font-mono text-[10.5px] uppercase tracking-wider px-1.5 py-0.5 border border-line bg-surface dark:bg-darksurface text-ink dark:text-chalk shrink-0 mt-0.5">GL</span>
+                                <a href="https://www.gryffindorlab.com" target="_blank" rel="noopener noreferrer" class="text-ink/90 dark:text-chalk/90 hover:underline underline-offset-4 leading-tight font-medium">
+                                    Gryffindor Lab (www.gryffindorlab.com)
+                                </a>
+                            </div>
+                            <div class="flex items-start gap-2.5">
+                                <span class="font-mono text-[10.5px] uppercase tracking-wider px-1.5 py-0.5 border border-line bg-surface dark:bg-darksurface text-ink dark:text-chalk shrink-0 mt-0.5">ICF</span>
+                                <a href="https://www.innovationcauldronfoundation.org" target="_blank" rel="noopener noreferrer" class="text-ink/90 dark:text-chalk/90 hover:underline underline-offset-4 leading-tight font-medium">
+                                    Innovation Cauldron Foundation
                                 </a>
                             </div>
                         </div>
                     </div>
-                </article>
 
-                <!-- Work Item 4: Metal-Oxide Supercapacitors -->
-                <article class="group">
-                    <button type="button" onclick="toggleWork('work-4')" class="w-full text-left py-7 px-2 -mx-2 editorial-row grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-8 items-baseline">
-                        <div class="md:col-span-4 flex items-baseline justify-between md:justify-start gap-3">
-                            <h3 class="text-[18px] font-medium text-ink dark:text-chalk tracking-sub">
-                                Metal-Oxide Supercapacitors
-                            </h3>
-                            <span class="text-[12px] text-muted dark:text-dim">04</span>
-                        </div>
-                        <div class="md:col-span-7 text-[15px] text-muted dark:text-dim leading-relaxed">
-                            <span class="text-ink dark:text-chalk font-medium">Electrochemistry</span> · Synthesis, microstructural characterization, and electrochemical performance of phytosynthesized ZnO, Co3O4, and NiO nanostructures for supercapacitor electrodes.
-                        </div>
-                        <div class="md:col-span-1 text-right text-[14px] text-muted dark:text-dim font-mono" id="work-4-indicator">
-                            +
-                        </div>
+                    <!-- 1px Hairline Divider Separating Identity Header from Initial Introduction -->
+                    <hr class="my-6 border-line">
+
+                    <!-- Two-Paragraph Initial Introduction (Directly Visible on Entry) -->
+                    <div class="space-y-3.5 text-[15px] text-muted dark:text-dim leading-relaxed max-w-3xl">
+                        <p class="text-ink/95 dark:text-chalk/95">
+                            I am an undergraduate researcher in <strong class="font-medium text-ink dark:text-chalk">Nanomaterials and Ceramic Engineering at BUET</strong> working at the intersection of functional materials science, venture building, and corporate strategy. My laboratory and modeling research focuses on solar-driven ceramic membrane distillation (<strong class="font-medium text-ink dark:text-chalk">Roder Bari</strong>), solid-state mesoporous ceramic nanocomposites (<strong class="font-medium text-ink dark:text-chalk">AuraStone</strong>), phytosynthesized metal-oxide supercapacitor electrodes, and photonic crystal fiber sensors.
+                        </p>
+                        <p>
+                            Alongside engineering research, I co-founded <a href="https://www.gryffindorlab.com" target="_blank" rel="noopener noreferrer" class="text-ink dark:text-chalk underline decoration-hairline hover:decoration-ink underline-offset-4">Gryffindor Lab</a> (a creative, web architecture, and business development agency), serve as Head of the Student Committee &amp; Convener at the <a href="https://www.innovationcauldronfoundation.org" target="_blank" rel="noopener noreferrer" class="text-ink dark:text-chalk underline decoration-hairline hover:decoration-ink underline-offset-4">Innovation Cauldron Foundation</a> (organizing the <strong class="font-medium text-ink dark:text-chalk">Nano Innovation Ideas Festival 2026</strong>), and drive B2B partnerships as Business Development Executive at <strong class="font-medium text-ink dark:text-chalk">AMC</strong>.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- MODE B: Pure Minimal Text-Only Hero (gryffindorlab.com pure mode, toggled via top nav) -->
+            <div id="pureMinimalHero" class="hidden pt-4 pb-2">
+                <p class="font-mono text-[12px] text-muted dark:text-dim mb-3">
+                    Dhaka, Bangladesh · Nanomaterials &amp; Ceramic Engineering @ BUET
+                </p>
+                <h1 class="text-3xl sm:text-4xl font-medium tracking-tight text-ink dark:text-chalk leading-[1.2] max-w-2xl">
+                    Md. Fahim Faisal — engineering functional nanomaterials and building commercial ventures.
+                </h1>
+                <p class="mt-5 text-[15.5px] text-muted dark:text-dim leading-relaxed max-w-2xl">
+                    Co-Founder &amp; COO at <a href="https://www.gryffindorlab.com" target="_blank" rel="noopener noreferrer" class="text-ink dark:text-chalk underline underline-offset-4">Gryffindor Lab</a> · Head of Student Committee at <a href="https://www.innovationcauldronfoundation.org" target="_blank" rel="noopener noreferrer" class="text-ink dark:text-chalk underline underline-offset-4">Innovation Cauldron Foundation</a> · Business Development Executive at AMC · Undergraduate Researcher in Nanomaterials &amp; Ceramic Engineering at BUET.
+                </p>
+                <div class="mt-6 flex flex-wrap items-center gap-4 text-[13.5px]">
+                    <a href="#contact" class="px-4 py-2 bg-ink text-paper dark:bg-chalk dark:text-carbon font-medium">Get in touch</a>
+                    <button type="button" onclick="openCvModal()" class="px-4 py-2 border border-line text-ink dark:text-chalk">Curriculum Vitae</button>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ===================================================================
+             SELECTED WORK. (gryffindorlab.com Minimal Section Header & Rows)
+             =================================================================== -->
+        <section id="work" class="scroll-mt-16 py-14 border-b border-line">
+            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between mb-6 gap-3">
+                <h2 class="text-xl sm:text-[22px] font-medium tracking-tight text-ink dark:text-chalk">
+                    Selected work.
+                </h2>
+
+                <!-- Minimal Middot Filter Lens -->
+                <div class="flex flex-wrap items-center gap-2 text-[13px] text-muted dark:text-dim no-print" role="tablist">
+                    <button type="button" onclick="filterWork('all', this)" class="filter-btn active transition-colors">
+                        All (6)
                     </button>
-                    <div id="work-4" class="work-drawer hidden pb-8 pt-2 grid grid-cols-1 md:grid-cols-12 gap-6 text-[14px] text-muted dark:text-dim">
-                        <div class="md:col-start-5 md:col-span-8 space-y-4 border-l border-line pl-5">
-                            <p class="leading-relaxed">
-                                Investigates green, plant-extract-mediated synthesis pathways for transition metal oxides (ZnO, Co3O4, and NiO) to tailor crystallite morphology, active surface area, and pseudocapacitive charge-transfer kinetics for high-power electrochemical energy storage electrodes.
+                    <span>·</span>
+                    <button type="button" onclick="filterWork('rd', this)" class="filter-btn hover:text-ink dark:hover:text-chalk transition-colors">
+                        R&amp;D &amp; Materials
+                    </button>
+                    <span>·</span>
+                    <button type="button" onclick="filterWork('venture', this)" class="filter-btn hover:text-ink dark:hover:text-chalk transition-colors">
+                        Ventures &amp; Strategy
+                    </button>
+                </div>
+            </div>
+
+            <div class="border-t border-line divide-y divide-hairline dark:divide-darkline border-b">
+
+                <!-- 1. Roder Bari -->
+                <article class="work-item" data-category="rd">
+                    <div onclick="toggleWork('work-1')" class="w-full text-left py-5 px-3 -mx-3 editorial-row grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 items-baseline cursor-pointer">
+                        <div class="md:col-span-4">
+                            <h3 class="text-[15.5px] font-medium text-ink dark:text-chalk">
+                                Roder Bari
+                            </h3>
+                            <p class="text-[12.5px] text-muted dark:text-dim mt-0.5">
+                                Patent-Pending R&amp;D · BUET · 2026
                             </p>
-                            <p class="text-[13px] text-ink dark:text-chalk">
-                                Scope · Phytosynthesis · SEM &amp; particle size characterization (FRITSCH ANALYSETTE 3 PRO) · Specific capacitance &amp; cyclic stability
+                        </div>
+                        <div class="md:col-span-7 text-[14.5px] text-muted dark:text-dim leading-relaxed">
+                            <span class="text-ink/90 dark:text-chalk/90">Solar-Powered Ceramic Membrane Distillation</span> — Engineered a low-cost ceramic membrane coated with biogenic rice-husk silica nanoparticles for off-grid water desalination and industrial effluent recovery.
+                        </div>
+                        <div class="md:col-span-1 text-right font-mono text-[14px] text-muted dark:text-dim" id="work-1-indicator">+</div>
+                    </div>
+                    <div id="work-1" class="work-drawer hidden pb-5 pt-1 grid grid-cols-1 md:grid-cols-12 gap-6 text-[13.5px] text-muted dark:text-dim">
+                        <div class="md:col-start-5 md:col-span-8 border-l border-line pl-4 space-y-1.5">
+                            <p>
+                                Synthesizes amorphous silica from agricultural rice husk ash to modify the surface hydrophobicity and pore morphology of indigenous clay-based tubular and planar ceramic membranes, enabling high salt rejection and thermal efficiency under direct solar irradiation.
+                            </p>
+                            <p class="font-mono text-[11.5px] text-ink dark:text-chalk">
+                                Ceramic Membrane Distillation · Rice Husk Silica Nanocoating · Desalination
                             </p>
                         </div>
                     </div>
                 </article>
 
-                <!-- Work Item 5: Photonic Crystal Fiber Sensors -->
-                <article class="group">
-                    <button type="button" onclick="toggleWork('work-5')" class="w-full text-left py-7 px-2 -mx-2 editorial-row grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-8 items-baseline">
-                        <div class="md:col-span-4 flex items-baseline justify-between md:justify-start gap-3">
-                            <h3 class="text-[18px] font-medium text-ink dark:text-chalk tracking-sub">
-                                Photonic Crystal Fiber Sensors
+                <!-- 2. Gryffindor Lab -->
+                <article class="work-item" data-category="venture">
+                    <div onclick="toggleWork('work-2')" class="w-full text-left py-5 px-3 -mx-3 editorial-row grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 items-baseline cursor-pointer">
+                        <div class="md:col-span-4">
+                            <h3 class="text-[15.5px] font-medium text-ink dark:text-chalk">
+                                Gryffindor Lab
                             </h3>
-                            <span class="text-[12px] text-muted dark:text-dim">05</span>
-                        </div>
-                        <div class="md:col-span-7 text-[15px] text-muted dark:text-dim leading-relaxed">
-                            <span class="text-ink dark:text-chalk font-medium">Optical simulation</span> · Finite-element modeling and electro-optical waveguide sensing simulations in COMSOL Multiphysics.
-                        </div>
-                        <div class="md:col-span-1 text-right text-[14px] text-muted dark:text-dim font-mono" id="work-5-indicator">
-                            +
-                        </div>
-                    </button>
-                    <div id="work-5" class="work-drawer hidden pb-8 pt-2 grid grid-cols-1 md:grid-cols-12 gap-6 text-[14px] text-muted dark:text-dim">
-                        <div class="md:col-start-5 md:col-span-8 space-y-4 border-l border-line pl-5">
-                            <p class="leading-relaxed">
-                                Numerical modeling of microstructured Photonic Crystal Fiber (PCF) geometries using the Finite Element Method (FEM) in COMSOL Multiphysics to optimize relative sensitivity, confinement loss, effective mode area, and birefringence for refractive index sensing.
+                            <p class="text-[12.5px] text-muted dark:text-dim mt-0.5">
+                                Co-Founder &amp; COO · 2026 – Present
                             </p>
-                            <p class="text-[13px] text-ink dark:text-chalk">
-                                Scope · COMSOL Multiphysics · Wave optics · Finite Element Analysis (FEM) · Refractive index sensing
+                        </div>
+                        <div class="md:col-span-7 text-[14.5px] text-muted dark:text-dim leading-relaxed">
+                            <span class="text-ink/90 dark:text-chalk/90">Creative &amp; Business Development Agency</span> — Full-stack digital product design, web &amp; mobile engineering, commercial cinematography, and strategic growth consulting.
+                            <a href="https://www.gryffindorlab.com" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="inline-block ml-1 text-ink dark:text-chalk underline decoration-hairline hover:decoration-ink underline-offset-4">
+                                www.gryffindorlab.com ↗
+                            </a>
+                        </div>
+                        <div class="md:col-span-1 text-right font-mono text-[14px] text-muted dark:text-dim" id="work-2-indicator">+</div>
+                    </div>
+                    <div id="work-2" class="work-drawer hidden pb-5 pt-1 grid grid-cols-1 md:grid-cols-12 gap-6 text-[13.5px] text-muted dark:text-dim">
+                        <div class="md:col-start-5 md:col-span-8 border-l border-line pl-4 space-y-1.5">
+                            <p>
+                                Built so founders and enterprise teams don't have to coordinate separate vendors across software engineering, video production, and brand growth. Leads studio operations, client strategy, and technical delivery.
+                            </p>
+                            <p class="font-mono text-[11.5px] text-ink dark:text-chalk">
+                                Web &amp; App Engineering · Commercial Cinematography · Brand Strategy · www.gryffindorlab.com
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 3. Innovation Cauldron Foundation -->
+                <article class="work-item" data-category="venture">
+                    <div onclick="toggleWork('work-3')" class="w-full text-left py-5 px-3 -mx-3 editorial-row grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 items-baseline cursor-pointer">
+                        <div class="md:col-span-4">
+                            <h3 class="text-[15.5px] font-medium text-ink dark:text-chalk">
+                                Innovation Cauldron Foundation
+                            </h3>
+                            <p class="text-[12.5px] text-muted dark:text-dim mt-0.5">
+                                Head of Student Committee &amp; Convener · 2026
+                            </p>
+                        </div>
+                        <div class="md:col-span-7 text-[14.5px] text-muted dark:text-dim leading-relaxed">
+                            <span class="text-ink/90 dark:text-chalk/90">Nano Innovation Ideas Festival 2026</span> — Spearheaded student branch governance and organized the national nanotechnology &amp; deep-tech innovation showcase at BUET.
+                            <a href="https://www.innovationcauldronfoundation.org" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="inline-block ml-1 text-ink dark:text-chalk underline decoration-hairline hover:decoration-ink underline-offset-4">
+                                www.innovationcauldronfoundation.org ↗
+                            </a>
+                        </div>
+                        <div class="md:col-span-1 text-right font-mono text-[14px] text-muted dark:text-dim" id="work-3-indicator">+</div>
+                    </div>
+                    <div id="work-3" class="work-drawer hidden pb-5 pt-1 grid grid-cols-1 md:grid-cols-12 gap-6 text-[13.5px] text-muted dark:text-dim">
+                        <div class="md:col-start-5 md:col-span-8 border-l border-line pl-4 space-y-1.5">
+                            <p>
+                                Serves as Head of the Student Committee and Convener of the Student Branch Ad Hoc Committee, mobilizing university researchers, industry evaluators, and academic leaders to translate laboratory nanotechnology into scalable ventures.
+                            </p>
+                            <p class="font-mono text-[11.5px] text-ink dark:text-chalk">
+                                National STEM Governance · Nano Innovation Ideas Festival · www.innovationcauldronfoundation.org
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 4. AuraStone -->
+                <article class="work-item" data-category="rd">
+                    <div onclick="toggleWork('work-4')" class="w-full text-left py-5 px-3 -mx-3 editorial-row grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 items-baseline cursor-pointer">
+                        <div class="md:col-span-4">
+                            <h3 class="text-[15.5px] font-medium text-ink dark:text-chalk">
+                                AuraStone
+                            </h3>
+                            <p class="text-[12.5px] text-muted dark:text-dim mt-0.5">
+                                Functional Ceramics R&amp;D · BUET · 2026
+                            </p>
+                        </div>
+                        <div class="md:col-span-7 text-[14.5px] text-muted dark:text-dim leading-relaxed">
+                            <span class="text-ink/90 dark:text-chalk/90">Mesoporous Ceramic Nanocomposite Platform</span> — Solid-state unpowered mosquito repellent diffuser engineered to regulate spatial vapor release via Fickian diffusion kinetics.
+                        </div>
+                        <div class="md:col-span-1 text-right font-mono text-[14px] text-muted dark:text-dim" id="work-4-indicator">+</div>
+                    </div>
+                    <div id="work-4" class="work-drawer hidden pb-5 pt-1 grid grid-cols-1 md:grid-cols-12 gap-6 text-[13.5px] text-muted dark:text-dim">
+                        <div class="md:col-start-5 md:col-span-8 border-l border-line pl-4 space-y-1.5">
+                            <p>
+                                Tailors interconnected mesopore tortuosity in sintered ceramic matrices to achieve sustained, zero-electricity active diffusion without synthetic liquid aerosol propellants.
+                            </p>
+                            <p class="font-mono text-[11.5px] text-ink dark:text-chalk">
+                                Mesoporous Ceramics · Controlled Release · Fick's First Law of Diffusion
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 5. Metal-Oxide Supercapacitors -->
+                <article class="work-item" data-category="rd">
+                    <div onclick="toggleWork('work-5')" class="w-full text-left py-5 px-3 -mx-3 editorial-row grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 items-baseline cursor-pointer">
+                        <div class="md:col-span-4">
+                            <h3 class="text-[15.5px] font-medium text-ink dark:text-chalk">
+                                Green Metal-Oxide Electrodes
+                            </h3>
+                            <p class="text-[12.5px] text-muted dark:text-dim mt-0.5">
+                                Energy Storage Research · 2025 – 2026
+                            </p>
+                        </div>
+                        <div class="md:col-span-7 text-[14.5px] text-muted dark:text-dim leading-relaxed">
+                            <span class="text-ink/90 dark:text-chalk/90">Phytosynthesized Nanostructures for Supercapacitors</span> — Green synthesis and electrochemical evaluation of transition metal oxides (ZnO, Co3O4, NiO) for high-capacitance electrodes.
+                        </div>
+                        <div class="md:col-span-1 text-right font-mono text-[14px] text-muted dark:text-dim" id="work-5-indicator">+</div>
+                    </div>
+                    <div id="work-5" class="work-drawer hidden pb-5 pt-1 grid grid-cols-1 md:grid-cols-12 gap-6 text-[13.5px] text-muted dark:text-dim">
+                        <div class="md:col-start-5 md:col-span-8 border-l border-line pl-4 space-y-1.5">
+                            <p>
+                                Investigates plant-extract-mediated synthesis pathways to control crystallite size, specific surface area, and faradaic charge transfer resistance in pseudocapacitive electrodes.
+                            </p>
+                            <p class="font-mono text-[11.5px] text-ink dark:text-chalk">
+                                Phytosynthesis · Transition Metal Oxides · Supercapacitor Electrodes
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 6. PCF Optical Sensor Modeling & AMC -->
+                <article class="work-item" data-category="rd">
+                    <div onclick="toggleWork('work-6')" class="w-full text-left py-5 px-3 -mx-3 editorial-row grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 items-baseline cursor-pointer">
+                        <div class="md:col-span-4">
+                            <h3 class="text-[15.5px] font-medium text-ink dark:text-chalk">
+                                PCF Optical Sensor Modeling
+                            </h3>
+                            <p class="text-[12.5px] text-muted dark:text-dim mt-0.5">
+                                COMSOL Multiphysics · 2026
+                            </p>
+                        </div>
+                        <div class="md:col-span-7 text-[14.5px] text-muted dark:text-dim leading-relaxed">
+                            <span class="text-ink/90 dark:text-chalk/90">Photonic Crystal Fiber Waveguide Simulation</span> — Finite element method (FEM) modeling of birefringence, confinement loss, and refractive index sensitivity in microstructure optical fibers.
+                        </div>
+                        <div class="md:col-span-1 text-right font-mono text-[14px] text-muted dark:text-dim" id="work-6-indicator">+</div>
+                    </div>
+                    <div id="work-6" class="work-drawer hidden pb-5 pt-1 grid grid-cols-1 md:grid-cols-12 gap-6 text-[13.5px] text-muted dark:text-dim">
+                        <div class="md:col-start-5 md:col-span-8 border-l border-line pl-4 space-y-1.5">
+                            <p>
+                                Optimizes air-hole lattice pitch and core geometry in COMSOL Multiphysics to maximize sensitivity for chemical and biomedical analyte detection.
+                            </p>
+                            <p class="font-mono text-[11.5px] text-ink dark:text-chalk">
+                                COMSOL Multiphysics · Finite Element Modeling · Photonic Crystal Fibers
                             </p>
                         </div>
                     </div>
@@ -374,485 +594,522 @@
             </div>
         </section>
 
-        <!-- 4. RESEARCH & PUBLICATIONS -->
-        <section id="research" class="scroll-mt-20 py-14 sm:py-20">
-            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between mb-10 gap-2">
-                <h2 class="text-2xl sm:text-3xl font-medium tracking-editorial text-ink dark:text-chalk">
+        <!-- ===================================================================
+             RESEARCH & PUBLICATIONS.
+             =================================================================== -->
+        <section id="research" class="scroll-mt-16 py-14 border-b border-line">
+            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between mb-6 gap-2">
+                <h2 class="text-xl sm:text-[22px] font-medium tracking-tight text-ink dark:text-chalk">
                     Research &amp; publications.
                 </h2>
-                <p class="text-[13px] text-muted dark:text-dim">
-                    Conference proceedings, oral presentations, and extended abstracts.
-                </p>
+                <span class="text-[13px] text-muted dark:text-dim">
+                    Department of Nanomaterials and Ceramic Engineering, BUET
+                </span>
             </div>
 
             <div class="border-t border-line divide-y divide-hairline dark:divide-darkline border-b">
-                <!-- Pub 1 -->
-                <div class="py-6 grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-8 items-baseline">
-                    <div class="md:col-span-4 text-[15px] font-medium text-ink dark:text-chalk">
-                        ICChE 2026 <span class="text-muted dark:text-dim font-normal">· Dec 2026</span>
+                <div class="py-4.5 py-5 grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 items-baseline">
+                    <div class="md:col-span-4">
+                        <div class="text-[15px] font-medium text-ink dark:text-chalk">ICChE 2026</div>
+                        <div class="font-mono text-[11.5px] text-muted dark:text-dim">Oral &amp; Poster · Paper ID: 230 · Dec 2026</div>
                     </div>
-                    <div class="md:col-span-8 text-[15px] text-muted dark:text-dim">
-                        <span class="text-ink dark:text-chalk">Oral Presentation (Paper ID: 230)</span> · Ceramic microstructural evolution and phase characterization.
-                    </div>
-                </div>
-
-                <!-- Pub 2 -->
-                <div class="py-6 grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-8 items-baseline">
-                    <div class="md:col-span-4 text-[15px] font-medium text-ink dark:text-chalk">
-                        NAME 2027 <span class="text-muted dark:text-dim font-normal">· 2027</span>
-                    </div>
-                    <div class="md:col-span-8 text-[15px] text-muted dark:text-dim">
-                        <span class="text-ink dark:text-chalk">Poster Presentation</span> · Oxide ceramic sintering behavior and densification kinetics.
+                    <div class="md:col-span-8 text-[14.5px] text-muted dark:text-dim">
+                        Accepted for both Oral and Poster presentations at the International Conference on Chemical Engineering (ICChE 2026) focusing on microstructural evolution and functional ceramic performance.
                     </div>
                 </div>
 
-                <!-- Pub 3 -->
-                <div class="py-6 grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-8 items-baseline">
-                    <div class="md:col-span-4 text-[15px] font-medium text-ink dark:text-chalk">
-                        ICWFM 2027 <span class="text-muted dark:text-dim font-normal">· 2027</span>
+                <div class="py-5 grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 items-baseline">
+                    <div class="md:col-span-4">
+                        <div class="text-[15px] font-medium text-ink dark:text-chalk">ICESGE-2025 (ACS Bangladesh)</div>
+                        <div class="font-mono text-[11.5px] text-muted dark:text-dim">Oral Presentation · Dec 2025</div>
                     </div>
-                    <div class="md:col-span-8 text-[15px] text-muted dark:text-dim">
-                        <span class="text-ink dark:text-chalk">Extended Abstract</span> · Solar-driven ceramic membrane distillation for water recovery.
-                    </div>
-                </div>
-
-                <!-- Pub 4 -->
-                <div class="py-6 grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-8 items-baseline">
-                    <div class="md:col-span-4 text-[15px] font-medium text-ink dark:text-chalk">
-                        ICESGE 2025 <span class="text-muted dark:text-dim font-normal">· Dec 2025</span>
-                    </div>
-                    <div class="md:col-span-8 text-[15px] text-muted dark:text-dim">
-                        <span class="text-ink dark:text-chalk">Oral Presentation (ACS Bangladesh)</span> · Phytosynthesized nanomaterials for sustainable energy and environmental systems.
+                    <div class="md:col-span-8 text-[14.5px] text-muted dark:text-dim">
+                        1st International Conference on Environmental Sustainability and Greener Earth (American Chemical Society Bangladesh Chapter) — Sustainable nanomaterials for clean energy and environmental remediation.
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 5. EXPERIENCE & LEADERSHIP -->
-        <section id="experience" class="scroll-mt-20 py-14 sm:py-20">
-            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between mb-10 gap-2">
-                <h2 class="text-2xl sm:text-3xl font-medium tracking-editorial text-ink dark:text-chalk">
-                    Experience &amp; leadership.
+        <!-- ===================================================================
+             LEADERSHIP & AFFILIATIONS.
+             =================================================================== -->
+        <section id="leadership" class="scroll-mt-16 py-14 border-b border-line">
+            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between mb-6 gap-2">
+                <h2 class="text-xl sm:text-[22px] font-medium tracking-tight text-ink dark:text-chalk">
+                    Leadership &amp; affiliations.
                 </h2>
-                <p class="text-[13px] text-muted dark:text-dim">
-                    Ventures, corporate partnerships, and institutional governance.
-                </p>
+                <span class="text-[13px] text-muted dark:text-dim">
+                    Corporate strategy, national summits &amp; institutional governance
+                </span>
             </div>
 
-            <div class="border-t border-line divide-y divide-hairline dark:divide-darkline border-b">
-                <!-- Exp 1 -->
-                <div class="py-5 grid grid-cols-1 md:grid-cols-12 gap-1 md:gap-8 items-baseline">
-                    <div class="md:col-span-4 text-[15px] font-medium text-ink dark:text-chalk">
-                        Gryffindor Lab
+            <div class="border-t border-line divide-y divide-hairline dark:divide-darkline border-b text-[14.5px]">
+
+                <!-- Innovation Cauldron Foundation -->
+                <div class="py-4 grid grid-cols-1 md:grid-cols-12 gap-1.5 md:gap-6 items-baseline">
+                    <div class="md:col-span-5 font-medium text-ink dark:text-chalk">
+                        <span>Innovation Cauldron Foundation</span>
+                        <a href="https://www.innovationcauldronfoundation.org" target="_blank" rel="noopener noreferrer" class="block font-mono text-[11.5px] font-normal text-muted dark:text-dim underline underline-offset-4 hover:text-ink dark:hover:text-chalk">
+                            www.innovationcauldronfoundation.org ↗
+                        </a>
                     </div>
-                    <div class="md:col-span-6 text-[15px] text-muted dark:text-dim">
-                        <span class="text-ink dark:text-chalk">Co-Founder &amp; COO</span> · Web development, video production &amp; brand systems
-                    </div>
-                    <div class="md:col-span-2 md:text-right text-[13px] text-muted dark:text-dim">
-                        2026 — Present
+                    <div class="md:col-span-7 text-muted dark:text-dim">
+                        <span class="text-ink dark:text-chalk">Head of the Student Committee &amp; Convener of the Student Branch Ad Hoc Committee</span> · Organized Nano Innovation Ideas Festival 2026
                     </div>
                 </div>
 
-                <!-- Exp 2 -->
-                <div class="py-5 grid grid-cols-1 md:grid-cols-12 gap-1 md:gap-8 items-baseline">
-                    <div class="md:col-span-4 text-[15px] font-medium text-ink dark:text-chalk">
+                <!-- AMC -->
+                <div class="py-4 grid grid-cols-1 md:grid-cols-12 gap-1.5 md:gap-6 items-baseline">
+                    <div class="md:col-span-5 font-medium text-ink dark:text-chalk">
                         AMC
                     </div>
-                    <div class="md:col-span-6 text-[15px] text-muted dark:text-dim">
-                        <span class="text-ink dark:text-chalk">Business Development Executive</span> · Strategic partnerships with Link3, Intrix, TC Health &amp; Lead IT
-                    </div>
-                    <div class="md:col-span-2 md:text-right text-[13px] text-muted dark:text-dim">
-                        2026
+                    <div class="md:col-span-7 text-muted dark:text-dim">
+                        <span class="text-ink dark:text-chalk">Business Development Executive</span> · B2B corporate partnerships, commercial proposals &amp; enterprise client acquisition (Link3, Intrix, TC Health, Lead IT)
                     </div>
                 </div>
 
-                <!-- Exp 3 -->
-                <div class="py-5 grid grid-cols-1 md:grid-cols-12 gap-1 md:gap-8 items-baseline">
-                    <div class="md:col-span-4 text-[15px] font-medium text-ink dark:text-chalk">
+                <!-- Silicon River Student Branch -->
+                <div class="py-4 grid grid-cols-1 md:grid-cols-12 gap-1.5 md:gap-6 items-baseline">
+                    <div class="md:col-span-5 font-medium text-ink dark:text-chalk">
                         Silicon River Student Branch
                     </div>
-                    <div class="md:col-span-6 text-[15px] text-muted dark:text-dim">
-                        <span class="text-ink dark:text-chalk">Deputy Director</span> · Corporate Relations &amp; Strategic Partnerships (Central Committee)
-                    </div>
-                    <div class="md:col-span-2 md:text-right text-[13px] text-muted dark:text-dim">
-                        2026 — Present
+                    <div class="md:col-span-7 text-muted dark:text-dim">
+                        <span class="text-ink dark:text-chalk">Deputy Director of Corporate Relations &amp; Strategic Partnerships</span> · Central Committee
                     </div>
                 </div>
 
-                <!-- Exp 4 -->
-                <div class="py-5 grid grid-cols-1 md:grid-cols-12 gap-1 md:gap-8 items-baseline">
-                    <div class="md:col-span-4 text-[15px] font-medium text-ink dark:text-chalk">
-                        BUET Entrepreneurship Development Club
-                    </div>
-                    <div class="md:col-span-6 text-[15px] text-muted dark:text-dim">
-                        <span class="text-ink dark:text-chalk">Sponsorship Manager</span> · Previously Manager of Logistics
-                    </div>
-                    <div class="md:col-span-2 md:text-right text-[13px] text-muted dark:text-dim">
-                        2026 — Present
-                    </div>
-                </div>
-
-                <!-- Exp 5 -->
-                <div class="py-5 grid grid-cols-1 md:grid-cols-12 gap-1 md:gap-8 items-baseline">
-                    <div class="md:col-span-4 text-[15px] font-medium text-ink dark:text-chalk">
-                        Innovation Cauldron Foundation
-                    </div>
-                    <div class="md:col-span-6 text-[15px] text-muted dark:text-dim">
-                        <span class="text-ink dark:text-chalk">Head of Student Committee &amp; Convener</span> · Nano Innovation Ideas Festival 2026
-                    </div>
-                    <div class="md:col-span-2 md:text-right text-[13px] text-muted dark:text-dim">
-                        2026
-                    </div>
-                </div>
-
-                <!-- Exp 6 -->
-                <div class="py-5 grid grid-cols-1 md:grid-cols-12 gap-1 md:gap-8 items-baseline">
-                    <div class="md:col-span-4 text-[15px] font-medium text-ink dark:text-chalk">
+                <!-- BEAR Summit 2026 -->
+                <div class="py-4 grid grid-cols-1 md:grid-cols-12 gap-1.5 md:gap-6 items-baseline">
+                    <div class="md:col-span-5 font-medium text-ink dark:text-chalk">
                         BEAR Summit 2026
                     </div>
-                    <div class="md:col-span-6 text-[15px] text-muted dark:text-dim">
-                        <span class="text-ink dark:text-chalk">Knowledge &amp; Insights Fellow</span> · Stakeholder documentation &amp; closing synthesis at Novo Theater
-                    </div>
-                    <div class="md:col-span-2 md:text-right text-[13px] text-muted dark:text-dim">
-                        2026
+                    <div class="md:col-span-7 text-muted dark:text-dim">
+                        <span class="text-ink dark:text-chalk">Insight &amp; Knowledge Fellow</span> · Technical rapporteur &amp; closing synthesis presenter
                     </div>
                 </div>
 
-                <!-- Exp 7 -->
-                <div class="py-5 grid grid-cols-1 md:grid-cols-12 gap-1 md:gap-8 items-baseline">
-                    <div class="md:col-span-4 text-[15px] font-medium text-ink dark:text-chalk">
+                <!-- BUET EDC -->
+                <div class="py-4 grid grid-cols-1 md:grid-cols-12 gap-1.5 md:gap-6 items-baseline">
+                    <div class="md:col-span-5 font-medium text-ink dark:text-chalk">
+                        BUET Entrepreneurship Development Club (EDC)
+                    </div>
+                    <div class="md:col-span-7 text-muted dark:text-dim">
+                        <span class="text-ink dark:text-chalk">Sponsorship Manager</span> · Previously Manager of Logistics
+                    </div>
+                </div>
+
+                <!-- ResonaNCE & NCE BUET -->
+                <div class="py-4 grid grid-cols-1 md:grid-cols-12 gap-1.5 md:gap-6 items-baseline">
+                    <div class="md:col-span-5 font-medium text-ink dark:text-chalk">
+                        Dept. of NCE, BUET (ResonaNCE 2026)
+                    </div>
+                    <div class="md:col-span-7 text-muted dark:text-dim">
+                        <span class="text-ink dark:text-chalk">Head Organizer &amp; Corporate Sponsorship Lead</span> · Former Class Representative
+                    </div>
+                </div>
+
+                <!-- BUET Career Club & BUET Brainiacs -->
+                <div class="py-4 grid grid-cols-1 md:grid-cols-12 gap-1.5 md:gap-6 items-baseline">
+                    <div class="md:col-span-5 font-medium text-ink dark:text-chalk">
                         BUET Career Club &amp; BUET Brainiacs
                     </div>
-                    <div class="md:col-span-6 text-[15px] text-muted dark:text-dim">
-                        <span class="text-ink dark:text-chalk">Coordinator of Event Management</span> · Executive of Event Management &amp; Logistics
-                    </div>
-                    <div class="md:col-span-2 md:text-right text-[13px] text-muted dark:text-dim">
-                        2026 — Present
+                    <div class="md:col-span-7 text-muted dark:text-dim">
+                        <span class="text-ink dark:text-chalk">Coordinator of Event Management</span> (Career Club) · <span class="text-ink dark:text-chalk">Executive of Event Management &amp; Logistics</span> (Brainiacs)
                     </div>
                 </div>
 
-                <!-- Exp 8 -->
-                <div class="py-5 grid grid-cols-1 md:grid-cols-12 gap-1 md:gap-8 items-baseline">
-                    <div class="md:col-span-4 text-[15px] font-medium text-ink dark:text-chalk">
-                        Department of NCE, BUET
-                    </div>
-                    <div class="md:col-span-6 text-[15px] text-muted dark:text-dim">
-                        <span class="text-ink dark:text-chalk">B.Sc. in Nanomaterials and Ceramic Engineering</span> · Class Representative · Head Organizer at ResonaNCE
-                    </div>
-                    <div class="md:col-span-2 md:text-right text-[13px] text-muted dark:text-dim">
-                        Present
-                    </div>
-                </div>
-
-                <!-- Exp 9 -->
-                <div class="py-5 grid grid-cols-1 md:grid-cols-12 gap-1 md:gap-8 items-baseline">
-                    <div class="md:col-span-4 text-[15px] font-medium text-ink dark:text-chalk">
-                        Inside Learning &amp; Academic Foundations
-                    </div>
-                    <div class="md:col-span-6 text-[15px] text-muted dark:text-dim">
-                        <span class="text-ink dark:text-chalk">Higher Mathematics Instructor</span> · HSC &amp; Engineering Admission · Alumnus of Notre Dame College, Dhaka
-                    </div>
-                    <div class="md:col-span-2 md:text-right text-[13px] text-muted dark:text-dim">
-                        Ongoing
-                    </div>
-                </div>
-
-                <!-- Exp 10: Case Competitions -->
-                <div class="py-5 grid grid-cols-1 md:grid-cols-12 gap-1 md:gap-8 items-baseline">
-                    <div class="md:col-span-4 text-[15px] font-medium text-ink dark:text-chalk">
-                        Honors &amp; Case Competitions
-                    </div>
-                    <div class="md:col-span-6 text-[15px] text-muted dark:text-dim">
-                        <span class="text-ink dark:text-chalk">1st Place Winner (Team Error 404)</span> · Team Leader (Team Vanguard, Creativenture 4.0) · Finalist (BUET EDC Case Competition)
-                    </div>
-                    <div class="md:col-span-2 md:text-right text-[13px] text-muted dark:text-dim">
-                        National
-                    </div>
-                </div>
             </div>
         </section>
 
-        <!-- 6. WHERE SHOULD YOUR IDEA GO? (Modeled directly after gryffindorlab.com) -->
-        <section class="py-14 sm:py-20 no-print">
-            <div class="max-w-2xl mb-10">
-                <h2 class="text-2xl sm:text-3xl font-medium tracking-editorial text-ink dark:text-chalk">
-                    Where should your idea go?
-                </h2>
-                <p class="mt-2 text-[15px] text-muted dark:text-dim">
-                    Select a direction below to pre-configure a direct note.
-                </p>
-            </div>
-
-            <div class="border-t border-line divide-y divide-hairline dark:divide-darkline border-b">
-                <button type="button" onclick="selectInquiryPath('Research collaboration or lab inquiry')" class="w-full py-5 px-2 -mx-2 editorial-row flex items-center justify-between text-left group">
-                    <span class="text-[16px] sm:text-[18px] text-ink dark:text-chalk font-normal">
-                        Research collaboration or lab inquiry
-                    </span>
-                    <span class="text-muted dark:text-dim group-hover:translate-x-1 transition-transform">→</span>
-                </button>
-
-                <button type="button" onclick="selectInquiryPath('Website, video, or branding with Gryffindor Lab')" class="w-full py-5 px-2 -mx-2 editorial-row flex items-center justify-between text-left group">
-                    <span class="text-[16px] sm:text-[18px] text-ink dark:text-chalk font-normal">
-                        Website, video, or branding with Gryffindor Lab
-                    </span>
-                    <span class="text-muted dark:text-dim group-hover:translate-x-1 transition-transform">→</span>
-                </button>
-
-                <button type="button" onclick="selectInquiryPath('Corporate partnership or event sponsorship')" class="w-full py-5 px-2 -mx-2 editorial-row flex items-center justify-between text-left group">
-                    <span class="text-[16px] sm:text-[18px] text-ink dark:text-chalk font-normal">
-                        Corporate partnership or event sponsorship
-                    </span>
-                    <span class="text-muted dark:text-dim group-hover:translate-x-1 transition-transform">→</span>
-                </button>
-
-                <button type="button" onclick="selectInquiryPath('A bit of everything')" class="w-full py-5 px-2 -mx-2 editorial-row flex items-center justify-between text-left group">
-                    <span class="text-[16px] sm:text-[18px] text-ink dark:text-chalk font-normal">
-                        A bit of everything
-                    </span>
-                    <span class="text-muted dark:text-dim group-hover:translate-x-1 transition-transform">→</span>
-                </button>
-            </div>
-        </section>
-
-        <!-- 7. QUESTIONS (Minimalist Accordion) -->
-        <section id="questions" class="scroll-mt-20 py-14 sm:py-20">
-            <h2 class="text-2xl sm:text-3xl font-medium tracking-editorial text-ink dark:text-chalk mb-10">
-                Questions.
+        <!-- ===================================================================
+             EDUCATION & CAPABILITIES.
+             =================================================================== -->
+        <section id="education" class="scroll-mt-16 py-14 border-b border-line">
+            <h2 class="text-xl sm:text-[22px] font-medium tracking-tight text-ink dark:text-chalk mb-6">
+                Education &amp; capabilities.
             </h2>
 
-            <div class="border-t border-line divide-y divide-hairline dark:divide-darkline border-b">
-                <!-- Q1 -->
-                <div>
-                    <button type="button" onclick="toggleFaq('faq-1')" class="w-full py-6 flex items-baseline justify-between text-left gap-6">
-                        <span class="text-[16px] font-medium text-ink dark:text-chalk">
-                            What is your primary research focus at BUET?
-                        </span>
-                        <span id="faq-1-icon" class="text-muted dark:text-dim font-mono text-[15px] shrink-0">+</span>
-                    </button>
-                    <div id="faq-1" class="faq-answer hidden pb-6 text-[15px] text-muted dark:text-dim max-w-3xl leading-relaxed">
-                        My undergraduate research in the Department of Nanomaterials and Ceramic Engineering (NCE) at BUET centers on functional oxide ceramics, solar-driven ceramic membrane distillation (<em class="not-italic text-ink dark:text-chalk">Roder Bari</em>), mesoporous diffusion platforms (<em class="not-italic text-ink dark:text-chalk">AuraStone</em>), and phytosynthesized transition-metal-oxide nanostructures for supercapacitors.
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 border-t border-b border-line py-6">
+                <div class="md:col-span-6 space-y-4 md:border-r border-line md:pr-6">
+                    <div>
+                        <div class="text-[15px] font-medium text-ink dark:text-chalk">
+                            Bangladesh University of Engineering and Technology (BUET)
+                        </div>
+                        <div class="text-[14px] text-muted dark:text-dim">
+                            B.Sc. in Nanomaterials and Ceramic Engineering (NCE)
+                        </div>
+                    </div>
+                    <div class="pt-3 border-t border-line">
+                        <div class="text-[15px] font-medium text-ink dark:text-chalk">
+                            Notre Dame College, Dhaka
+                        </div>
+                        <div class="text-[14px] text-muted dark:text-dim">
+                            Higher Secondary Certificate (HSC) · Science Division
+                        </div>
                     </div>
                 </div>
 
-                <!-- Q2 -->
-                <div>
-                    <button type="button" onclick="toggleFaq('faq-2')" class="w-full py-6 flex items-baseline justify-between text-left gap-6">
-                        <span class="text-[16px] font-medium text-ink dark:text-chalk">
-                            Can I book web development, video editing, or design work through you?
-                        </span>
-                        <span id="faq-2-icon" class="text-muted dark:text-dim font-mono text-[15px] shrink-0">+</span>
-                    </button>
-                    <div id="faq-2" class="faq-answer hidden pb-6 text-[15px] text-muted dark:text-dim max-w-3xl leading-relaxed">
-                        Yes. As Co-Founder of <a href="https://www.gryffindorlab.com" target="_blank" rel="noopener noreferrer" class="text-ink dark:text-chalk underline underline-offset-4">Gryffindor Lab ↗</a>, our studio handles custom websites, web applications, commercial cinematography, video editing, and brand identity systems from first cut to final file.
+                <div class="md:col-span-6 space-y-2">
+                    <div class="font-mono text-[11px] uppercase tracking-wider text-muted dark:text-dim">
+                        Core Capabilities
                     </div>
-                </div>
-
-                <!-- Q3 -->
-                <div>
-                    <button type="button" onclick="toggleFaq('faq-3')" class="w-full py-6 flex items-baseline justify-between text-left gap-6">
-                        <span class="text-[16px] font-medium text-ink dark:text-chalk">
-                            Are you available for corporate partnerships or consulting?
-                        </span>
-                        <span id="faq-3-icon" class="text-muted dark:text-dim font-mono text-[15px] shrink-0">+</span>
-                    </button>
-                    <div id="faq-3" class="faq-answer hidden pb-6 text-[15px] text-muted dark:text-dim max-w-3xl leading-relaxed">
-                        Yes. I work across B2B business development, flagship university sponsorship architecture (BUET EDC, Silicon River, ResonaNCE), and technical stakeholder documentation. Reach out below to discuss partnerships.
-                    </div>
-                </div>
-
-                <!-- Q4 -->
-                <div>
-                    <button type="button" onclick="toggleFaq('faq-4')" class="w-full py-6 flex items-baseline justify-between text-left gap-6">
-                        <span class="text-[16px] font-medium text-ink dark:text-chalk">
-                            How can I request your full academic CV or conference preprints?
-                        </span>
-                        <span id="faq-4-icon" class="text-muted dark:text-dim font-mono text-[15px] shrink-0">+</span>
-                    </button>
-                    <div id="faq-4" class="faq-answer hidden pb-6 text-[15px] text-muted dark:text-dim max-w-3xl leading-relaxed">
-                        You can generate a clean print copy of this dossier immediately using the <button type="button" onclick="window.print()" class="text-ink dark:text-chalk underline underline-offset-4">Print Minimal CV</button> link below, or send a quick note requesting specific conference manuscripts (ICChE 2026, NAME 2027, ICWFM 2027, or ICESGE 2025).
-                    </div>
+                    <p class="text-[14.5px] text-ink/90 dark:text-chalk/90 leading-relaxed">
+                        Ceramic Membrane Distillation · Nanomaterial Synthesis &amp; Characterization · COMSOL Multiphysics · B2B Corporate Sponsorships · Full-Stack Web &amp; Brand Architecture · Commercial Video Production (CapCut Pro)
+                    </p>
                 </div>
             </div>
         </section>
 
-        <!-- 8. LET'S TALK (Footer & Contact) -->
-        <footer id="contact" class="scroll-mt-20 pt-14 sm:pt-20 pb-20 border-t border-line">
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
-                <!-- Left Column -->
-                <div class="md:col-span-6 space-y-6">
-                    <h2 class="text-3xl sm:text-4xl font-medium tracking-editorial text-ink dark:text-chalk">
-                        Let's talk.
-                    </h2>
-                    <p class="text-[15px] text-muted dark:text-dim max-w-md leading-relaxed">
-                        Tell me what you're working on—a research problem, a digital product or film for Gryffindor Lab, or a strategic partnership.
-                    </p>
+        <!-- ===================================================================
+             WHERE SHOULD YOUR IDEA GO? (gryffindorlab.com Closing Section)
+             =================================================================== -->
+        <footer id="contact" class="scroll-mt-16 pt-14">
+            <h2 class="text-xl sm:text-[22px] font-medium tracking-tight text-ink dark:text-chalk mb-3">
+                Where should your idea go?
+            </h2>
+            <p class="text-[14.5px] text-muted dark:text-dim max-w-2xl mb-8">
+                Available for research collaborations in functional ceramics and desalination, creative &amp; software commissions at Gryffindor Lab, and corporate partnership inquiries.
+            </p>
 
-                    <div class="pt-4 space-y-2.5 text-[14px]">
-                        <div>
-                            <a href="https://www.linkedin.com/in/muhammad-fahim-faisal" target="_blank" rel="noopener noreferrer" class="text-ink dark:text-chalk hover:text-muted dark:hover:text-dim transition-colors">
-                                linkedin.com/in/muhammad-fahim-faisal ↗
-                            </a>
-                        </div>
-                        <div>
-                            <a href="https://www.gryffindorlab.com" target="_blank" rel="noopener noreferrer" class="text-ink dark:text-chalk hover:text-muted dark:hover:text-dim transition-colors">
-                                gryffindorlab.com ↗
-                            </a>
-                        </div>
-                        <div class="no-print pt-1">
-                            <button type="button" onclick="window.print()" class="text-muted dark:text-dim hover:text-ink dark:hover:text-chalk transition-colors">
-                                Download / Print Minimal CV ↗
-                            </button>
-                        </div>
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 pb-12 border-b border-line">
+                <!-- Left Column: Direct Links -->
+                <div class="md:col-span-6 space-y-2.5 text-[14px]">
+                    <div class="flex items-baseline justify-between py-2 border-b border-line">
+                        <span class="text-muted dark:text-dim">Gryffindor Lab</span>
+                        <a href="https://www.gryffindorlab.com" target="_blank" rel="noopener noreferrer" class="text-ink dark:text-chalk font-medium hover:underline underline-offset-4">
+                            www.gryffindorlab.com ↗
+                        </a>
+                    </div>
+                    <div class="flex items-baseline justify-between py-2 border-b border-line">
+                        <span class="text-muted dark:text-dim">Innovation Cauldron Foundation</span>
+                        <a href="https://www.innovationcauldronfoundation.org" target="_blank" rel="noopener noreferrer" class="text-ink dark:text-chalk font-medium hover:underline underline-offset-4">
+                            www.innovationcauldronfoundation.org ↗
+                        </a>
+                    </div>
+                    <div class="flex items-baseline justify-between py-2 border-b border-line">
+                        <span class="text-muted dark:text-dim">LinkedIn</span>
+                        <a href="https://www.linkedin.com/in/muhammad-fahim-faisal" target="_blank" rel="noopener noreferrer" class="text-ink dark:text-chalk font-medium hover:underline underline-offset-4">
+                            linkedin.com/in/muhammad-fahim-faisal ↗
+                        </a>
+                    </div>
+                    <div class="flex items-baseline justify-between py-2 border-b border-line">
+                        <span class="text-muted dark:text-dim">Portfolio</span>
+                        <a href="https://fahimfaisalncebuet.vercel.app" target="_blank" rel="noopener noreferrer" class="text-ink dark:text-chalk font-medium hover:underline underline-offset-4">
+                            fahimfaisalncebuet.vercel.app ↗
+                        </a>
                     </div>
                 </div>
 
-                <!-- Right Column: Minimal Editorial Inquiry Composer -->
+                <!-- Right Column: Minimal Note Composer -->
                 <div class="md:col-span-6 no-print">
-                    <form id="editorialContactForm" onsubmit="handleInquirySubmit(event)" class="space-y-5">
-                        <div>
-                            <label for="inquiryTopic" class="block text-[12px] text-muted dark:text-dim mb-1.5">
-                                Topic
-                            </label>
+                    <form onsubmit="handleInquirySubmit(event)" class="space-y-3 border border-line p-5 bg-surface/40 dark:bg-darksurface/40">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <input
                                 type="text"
-                                id="inquiryTopic"
-                                value="Research collaboration or lab inquiry"
-                                class="w-full bg-transparent border-b border-line py-2.5 text-[15px] text-ink dark:text-chalk focus:outline-none focus:border-ink dark:focus:border-chalk transition-colors"
+                                id="inquiryName"
+                                required
+                                placeholder="Your name"
+                                class="w-full bg-paper dark:bg-carbon border border-line px-3 py-2 text-[13.5px] text-ink dark:text-chalk focus:outline-none focus:border-ink"
+                            >
+                            <input
+                                type="text"
+                                id="inquiryOrg"
+                                required
+                                placeholder="Organization or email"
+                                class="w-full bg-paper dark:bg-carbon border border-line px-3 py-2 text-[13.5px] text-ink dark:text-chalk focus:outline-none focus:border-ink"
                             >
                         </div>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                            <div>
-                                <label for="inquiryName" class="block text-[12px] text-muted dark:text-dim mb-1.5">
-                                    Name
-                                </label>
-                                <input
-                                    type="text"
-                                    id="inquiryName"
-                                    required
-                                    placeholder="Your name"
-                                    class="w-full bg-transparent border-b border-line py-2.5 text-[15px] text-ink dark:text-chalk placeholder-muted/50 focus:outline-none focus:border-ink dark:focus:border-chalk transition-colors"
-                                >
-                            </div>
-                            <div>
-                                <label for="inquiryOrg" class="block text-[12px] text-muted dark:text-dim mb-1.5">
-                                    Organization or email
-                                </label>
-                                <input
-                                    type="text"
-                                    id="inquiryOrg"
-                                    required
-                                    placeholder="you@domain.com"
-                                    class="w-full bg-transparent border-b border-line py-2.5 text-[15px] text-ink dark:text-chalk placeholder-muted/50 focus:outline-none focus:border-ink dark:focus:border-chalk transition-colors"
-                                >
-                            </div>
-                        </div>
-
-                        <div>
-                            <label for="inquiryNote" class="block text-[12px] text-muted dark:text-dim mb-1.5">
-                                Project or inquiry notes
-                            </label>
-                            <textarea
-                                id="inquiryNote"
-                                rows="3"
-                                required
-                                placeholder="A few lines about what you have in mind..."
-                                class="w-full bg-transparent border-b border-line py-2.5 text-[15px] text-ink dark:text-chalk placeholder-muted/50 focus:outline-none focus:border-ink dark:focus:border-chalk transition-colors resize-none"
-                            ></textarea>
-                        </div>
-
-                        <div class="pt-2 flex flex-wrap items-center justify-between gap-4">
+                        <textarea
+                            id="inquiryNote"
+                            rows="3"
+                            required
+                            placeholder="Write a brief note for Md. Fahim Faisal..."
+                            class="w-full bg-paper dark:bg-carbon border border-line px-3 py-2 text-[13.5px] text-ink dark:text-chalk focus:outline-none focus:border-ink resize-none"
+                        ></textarea>
+                        <div class="flex items-center justify-between gap-3">
                             <button
                                 type="submit"
-                                class="px-6 py-3 bg-ink text-paper dark:bg-chalk dark:text-carbon text-[14px] font-medium hover:opacity-85 transition-opacity"
+                                class="px-4 py-2 bg-ink text-paper dark:bg-chalk dark:text-carbon text-[13px] font-medium hover:opacity-90 transition-opacity"
                             >
-                                Copy formatted note →
+                                Copy formatted note ↗
                             </button>
-                            <span id="copyConfirm" class="text-[13px] text-muted dark:text-dim hidden">
-                                Copied to clipboard · Ready to paste on LinkedIn or email.
+                            <span id="copyConfirm" class="text-[12px] text-muted dark:text-dim hidden">
+                                ✓ Copied to clipboard.
                             </span>
                         </div>
                     </form>
                 </div>
             </div>
 
-            <!-- Bottom Copyright Line -->
-            <div class="mt-20 pt-8 border-t border-line flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-[13px] text-muted dark:text-dim">
-                <p>© 2026 Md. Fahim Faisal · Dhaka, Bangladesh.</p>
-                <p>fahimfaisal.me</p>
+            <!-- Minimal Footer Bar -->
+            <div class="pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[12.5px] text-muted dark:text-dim">
+                <p>© 2026 Md. Fahim Faisal · Dhaka, Bangladesh</p>
+                <div class="flex items-center gap-3 no-print">
+                    <button type="button" onclick="openCvModal()" class="hover:text-ink dark:hover:text-chalk underline underline-offset-4">
+                        Curriculum Vitae
+                    </button>
+                    <span>·</span>
+                    <button type="button" onclick="triggerPhotoPicker()" class="hover:text-ink dark:hover:text-chalk underline underline-offset-4">
+                        Embed Portrait Photo
+                    </button>
+                </div>
             </div>
         </footer>
 
     </main>
 
-    <!-- Minimal Script -->
+    <!-- ===================================================================
+         CLEAN CV MODAL
+         =================================================================== -->
+    <div id="cvModal" class="fixed inset-0 z-50 hidden bg-ink/60 backdrop-blur-xs flex items-center justify-center p-4 no-print">
+        <div class="bg-paper dark:bg-carbon border border-line max-w-2xl w-full max-h-[88vh] overflow-y-auto p-6 sm:p-8 shadow-lg">
+            <div class="flex items-start justify-between gap-4 border-b border-line pb-4">
+                <div>
+                    <h3 class="text-xl font-semibold text-ink dark:text-chalk">
+                        Md. Fahim Faisal
+                    </h3>
+                    <p class="text-[13px] text-muted dark:text-dim mt-0.5">
+                        B.Sc. in Nanomaterials &amp; Ceramic Engineering @ BUET · Co-Founder @ Gryffindor Lab · Head of Student Committee @ Innovation Cauldron Foundation
+                    </p>
+                </div>
+                <div class="flex items-center gap-2 shrink-0">
+                    <button
+                        type="button"
+                        onclick="window.print()"
+                        class="px-3.5 py-1.5 bg-ink text-paper dark:bg-chalk dark:text-carbon text-[12.5px] font-medium"
+                    >
+                        Print / PDF
+                    </button>
+                    <button
+                        type="button"
+                        onclick="closeCvModal()"
+                        class="px-3 py-1.5 border border-line text-ink dark:text-chalk text-[12.5px]"
+                    >
+                        Close ✕
+                    </button>
+                </div>
+            </div>
+
+            <div class="py-5 space-y-5 text-[13.5px] text-muted dark:text-dim">
+                <div>
+                    <div class="font-mono text-[11px] uppercase tracking-wider text-ink dark:text-chalk mb-1">Profile</div>
+                    <p>
+                        Undergraduate researcher in Nanomaterials and Ceramic Engineering at BUET, Co-Founder &amp; COO of Gryffindor Lab (www.gryffindorlab.com), Head of the Student Committee at Innovation Cauldron Foundation (www.innovationcauldronfoundation.org), and Business Development Executive at AMC.
+                    </p>
+                </div>
+                <div>
+                    <div class="font-mono text-[11px] uppercase tracking-wider text-ink dark:text-chalk mb-1">Selected Work &amp; Research</div>
+                    <ul class="space-y-1.5">
+                        <li><strong class="text-ink dark:text-chalk">Roder Bari (2026):</strong> Patent-pending solar-powered ceramic membrane distillation system with rice husk silica nanocoatings.</li>
+                        <li><strong class="text-ink dark:text-chalk">Gryffindor Lab (2026 – Present):</strong> Co-Founder &amp; COO — Web/app architecture, cinematography &amp; brand growth (www.gryffindorlab.com).</li>
+                        <li><strong class="text-ink dark:text-chalk">Innovation Cauldron Foundation (2026):</strong> Head of Student Committee &amp; Convener — Organized Nano Innovation Ideas Festival 2026 (www.innovationcauldronfoundation.org).</li>
+                        <li><strong class="text-ink dark:text-chalk">AuraStone &amp; Energy Storage R&amp;D:</strong> Mesoporous ceramic repellent diffuser, phytosynthesized supercapacitor electrodes, and COMSOL PCF sensor modeling.</li>
+                        <li><strong class="text-ink dark:text-chalk">Publications:</strong> ICChE 2026 (Oral &amp; Poster, Paper ID: 230) · ICESGE-2025 (ACS Bangladesh Oral Presentation).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive Script + 1-Click Photo Base64 Embedder -->
     <script>
-        // Toggle Dark / Light Mode cleanly
-        function toggleTheme() {
-            const html = document.documentElement;
-            const isDark = html.classList.toggle('dark');
-            const label = isDark ? 'Light' : 'Dark';
-            const desktopBtn = document.getElementById('themeToggleBtn');
-            const mobileBtn = document.getElementById('themeToggleMobile');
-            if (desktopBtn) desktopBtn.textContent = label;
-            if (mobileBtn) mobileBtn.textContent = label;
+        const DEFAULT_EMBEDDED_PHOTO = "";
+        let currentEmbeddedPhotoDataUrl = DEFAULT_EMBEDDED_PHOTO;
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const imgEl = document.getElementById('profile-img');
+            const fallbackEl = document.getElementById('profile-fallback');
+
+            if (DEFAULT_EMBEDDED_PHOTO && DEFAULT_EMBEDDED_PHOTO.startsWith('data:image')) {
+                imgEl.src = DEFAULT_EMBEDDED_PHOTO;
+                imgEl.classList.remove('hidden');
+                fallbackEl.classList.add('hidden');
+                return;
+            }
+
+            try {
+                const savedPhoto = localStorage.getItem('md_fahim_faisal_portrait');
+                if (savedPhoto && savedPhoto.startsWith('data:image')) {
+                    currentEmbeddedPhotoDataUrl = savedPhoto;
+                    imgEl.src = savedPhoto;
+                    imgEl.classList.remove('hidden');
+                    fallbackEl.classList.add('hidden');
+                }
+            } catch (e) {}
+        });
+
+        function handleProfileImageError(imgEl) {
+            const fallbackSrc = imgEl.getAttribute('data-fallback');
+            if (fallbackSrc && imgEl.src.indexOf(fallbackSrc) === -1) {
+                imgEl.removeAttribute('data-fallback');
+                imgEl.src = fallbackSrc;
+                return;
+            }
+            const fallbackEl = document.getElementById('profile-fallback');
+            if (imgEl && fallbackEl) {
+                imgEl.classList.add('hidden');
+                fallbackEl.classList.remove('hidden');
+            }
         }
 
-        // Toggle Mobile Navigation
+        function triggerPhotoPicker() {
+            const input = document.getElementById('photoFileInput');
+            if (input) input.click();
+        }
+
+        function handlePhotoSelected(event) {
+            const file = event.target.files && event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const tempImg = new Image();
+                tempImg.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    const size = 440;
+                    canvas.width = size;
+                    canvas.height = size;
+                    const ctx = canvas.getContext('2d');
+
+                    const minSide = Math.min(tempImg.width, tempImg.height);
+                    const sx = (tempImg.width - minSide) / 2;
+                    const sy = Math.max(0, (tempImg.height - minSide) * 0.12);
+
+                    ctx.drawImage(tempImg, sx, sy, minSide, minSide, 0, 0, size, size);
+                    const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.88);
+
+                    currentEmbeddedPhotoDataUrl = compressedDataUrl;
+
+                    const imgEl = document.getElementById('profile-img');
+                    const fallbackEl = document.getElementById('profile-fallback');
+                    if (imgEl && fallbackEl) {
+                        imgEl.src = compressedDataUrl;
+                        imgEl.classList.remove('hidden');
+                        fallbackEl.classList.add('hidden');
+                    }
+
+                    try {
+                        localStorage.setItem('md_fahim_faisal_portrait', compressedDataUrl);
+                    } catch (err) {}
+
+                    const banner = document.getElementById('photoReadyBanner');
+                    if (banner) {
+                        banner.classList.remove('hidden');
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                };
+                tempImg.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function copyFullHtmlWithEmbeddedPhoto() {
+            if (!currentEmbeddedPhotoDataUrl) {
+                triggerPhotoPicker();
+                return;
+            }
+
+            let rawHtml = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+            rawHtml = rawHtml.replace(
+                /const DEFAULT_EMBEDDED_PHOTO = ".*?";/,
+                `const DEFAULT_EMBEDDED_PHOTO = "${currentEmbeddedPhotoDataUrl}";`
+            );
+            rawHtml = rawHtml.replace(
+                'id="photoReadyBanner" class="bg-ink',
+                'id="photoReadyBanner" class="hidden bg-ink'
+            );
+
+            const temp = document.createElement('textarea');
+            temp.value = rawHtml;
+            document.body.appendChild(temp);
+            temp.select();
+            try {
+                document.execCommand('copy');
+            } catch (e) {}
+            document.body.removeChild(temp);
+
+            const btn = document.getElementById('copyHtmlWithPhotoBtn');
+            if (btn) {
+                const orig = btn.textContent;
+                btn.textContent = '✓ Copied! Paste into GitHub index.html';
+                setTimeout(() => { btn.textContent = orig; }, 4500);
+            }
+        }
+
+        function toggleTheme() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            const label = isDark ? 'Light' : 'Dark';
+            const btn1 = document.getElementById('themeToggleBtn');
+            const btn2 = document.getElementById('themeToggleBtnMobile');
+            if (btn1) btn1.textContent = label;
+            if (btn2) btn2.textContent = label;
+        }
+
+        function toggleHeroLayout() {
+            const card = document.getElementById('linkedinHeroCard');
+            const minimal = document.getElementById('pureMinimalHero');
+            const btn = document.getElementById('headerStyleBtn');
+            if (!card || !minimal) return;
+
+            const showingCard = !card.classList.contains('hidden');
+            if (showingCard) {
+                card.classList.add('hidden');
+                minimal.classList.remove('hidden');
+                if (btn) btn.textContent = 'Header: Minimal';
+            } else {
+                card.classList.remove('hidden');
+                minimal.classList.add('hidden');
+                if (btn) btn.textContent = 'Header: Card';
+            }
+        }
+
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
             const btn = document.getElementById('mobileMenuBtn');
             const isHidden = menu.classList.toggle('hidden');
-            btn.textContent = isHidden ? 'Menu' : 'Close';
+            if (btn) btn.textContent = isHidden ? 'Menu' : 'Close';
         }
 
-        // Inline Expandable Work Rows
+        function filterWork(category, btnEl) {
+            const items = document.querySelectorAll('.work-item');
+            items.forEach(item => {
+                if (category === 'all' || item.getAttribute('data-category') === category) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(b => b.classList.remove('active'));
+            if (btnEl) btnEl.classList.add('active');
+        }
+
         function toggleWork(id) {
             const drawer = document.getElementById(id);
             const indicator = document.getElementById(id + '-indicator');
             if (!drawer) return;
             const isHidden = drawer.classList.toggle('hidden');
-            if (indicator) {
-                indicator.textContent = isHidden ? '+' : '−';
-            }
+            if (indicator) indicator.textContent = isHidden ? '+' : '−';
         }
 
-        // Minimal FAQ Accordion
-        function toggleFaq(id) {
-            const answer = document.getElementById(id);
-            const icon = document.getElementById(id + '-icon');
-            if (!answer) return;
-            const isHidden = answer.classList.toggle('hidden');
-            if (icon) {
-                icon.textContent = isHidden ? '+' : '−';
-            }
+        function openCvModal() {
+            const modal = document.getElementById('cvModal');
+            if (modal) modal.classList.remove('hidden');
         }
 
-        // Directional Prompt Selector ("Where should your idea go?")
-        function selectInquiryPath(topicText) {
-            const topicInput = document.getElementById('inquiryTopic');
-            const noteInput = document.getElementById('inquiryNote');
-            if (topicInput) {
-                topicInput.value = topicText;
-            }
-            const contactSection = document.getElementById('contact');
-            if (contactSection) {
-                contactSection.scrollIntoView({ behavior: 'smooth' });
-            }
-            setTimeout(() => {
-                if (noteInput) noteInput.focus();
-            }, 450);
+        function closeCvModal() {
+            const modal = document.getElementById('cvModal');
+            if (modal) modal.classList.add('hidden');
         }
 
-        // Copy Formatted Inquiry Note
         function handleInquirySubmit(event) {
             event.preventDefault();
-            const topic = document.getElementById('inquiryTopic').value;
             const name = document.getElementById('inquiryName').value;
             const org = document.getElementById('inquiryOrg').value;
             const note = document.getElementById('inquiryNote').value;
 
-            const formatted = `Subject: ${topic}\nFrom: ${name} (${org})\n\n${note}`;
+            const formatted = `To: Md. Fahim Faisal\nFrom: ${name} (${org})\n\n${note}`;
             const temp = document.createElement('textarea');
             temp.value = formatted;
             document.body.appendChild(temp);
@@ -865,9 +1122,7 @@
             const confirmEl = document.getElementById('copyConfirm');
             if (confirmEl) {
                 confirmEl.classList.remove('hidden');
-                setTimeout(() => {
-                    confirmEl.classList.add('hidden');
-                }, 4000);
+                setTimeout(() => { confirmEl.classList.add('hidden'); }, 4000);
             }
         }
     </script>
