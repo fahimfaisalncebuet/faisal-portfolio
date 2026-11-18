@@ -1,0 +1,6 @@
+bold/
+fix/
+*.zip
+
+.vercel
+.env*
