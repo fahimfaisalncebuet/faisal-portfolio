@@ -138,6 +138,20 @@
   .quote p { color: var(--ink-2); }
 
   /* ---------- Education & skills ---------- */
+  /* ---------- Videos ---------- */
+  .vintro { max-width: 620px; color: var(--muted); margin: -16px 0 32px; }
+  .vlayout { display: grid; grid-template-columns: 1.15fr 1fr; gap: 28px; align-items: start; }
+  .vplayer iframe { width: 100%; aspect-ratio: 16/9; border: 0; border-radius: 6px; background: #000; display: block; box-shadow: 0 18px 40px rgba(0,0,0,.12); }
+  .vplayer-cap { margin-top: 12px; font-size: .82rem; color: var(--muted); display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .vgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .vcard { display: flex; flex-direction: column; gap: 6px; }
+  .vthumb { position: relative; display: block; aspect-ratio: 16/9; border-radius: 4px; overflow: hidden; background: #ddd; }
+  .vthumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+  .vcard:hover .vthumb img { transform: scale(1.05); }
+  .vthumb .play { position: absolute; inset: auto 8px 8px auto; width: 30px; height: 30px; border-radius: 50%; background: var(--maroon-2); color: #fff; display: grid; place-items: center; font-size: .7rem; }
+  .vtitle { font-size: .85rem; font-weight: 700; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .vcard:hover .vtitle { color: var(--maroon); }
+  .vdate { font-size: .72rem; color: var(--muted); }
   .edu .container { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
   .edu-item { padding: 22px 0; border-bottom: 1px solid var(--line); }
   .edu-item h3 { font-weight: 800; font-size: 1.1rem; }
@@ -174,6 +188,7 @@
     .hero-copy { padding: 48px 0 24px; }
     .hero-photo { justify-content: center; }
     .portrait { width: 70%; max-width: 340px; font-size: 5rem; }
+    .vlayout { grid-template-columns: 1fr; }
     .start .container, .about .container, .edu .container, .quotes { grid-template-columns: 1fr; }
     .cards { grid-template-columns: 1fr 1fr; }
     .roles { grid-template-columns: 1fr; }
@@ -199,6 +214,7 @@
       <a href="#work">Work</a>
       <a href="#leadership">Leadership</a>
       <a href="#research">Research</a>
+      <a href="#videos">Videos</a>
       <a href="#contact">Contact</a>
     </nav>
     <button type="button" class="menu-btn" aria-label="Open menu" onclick="document.getElementById('nav').classList.toggle('open')"><span></span><span></span><span></span></button>
@@ -209,7 +225,7 @@
 <section class="hero" style="padding:0">
   <div class="container">
     <div class="hero-copy">
-      <div class="crumbs">Materials<span>/</span>Ventures<span>/</span>Strategy</div>
+      <div class="crumbs">Materials<span>/</span>Ventures<span>/</span>Strategy<span>/</span>Content</div>
       <h1>Engineer More.<br />Build More.<span class="light">Impact More.</span></h1>
       <p class="lead">Nanomaterials &amp; Ceramic Engineering researcher at BUET, Co-Founder &amp; COO of Gryffindor Lab, and Campus Ambassador for Perfetti Van Melle and DELI × ACI.</p>
       <a class="btn" href="#about">
@@ -253,7 +269,7 @@
       <h2 class="h2">From BUET Labs to<br /><span class="light">Building Ventures.</span></h2>
       <h4>Science, venture building and strategy.</h4>
       <p>I'm an undergraduate researcher in Nanomaterials and Ceramic Engineering at BUET. My lab and modeling work covers solar-driven ceramic membrane distillation (Roder Bari), mesoporous ceramic nanocomposites (AuraStone), phytosynthesized metal-oxide supercapacitor electrodes, and photonic crystal fiber sensors.</p>
-      <p>Alongside research, I co-founded Gryffindor Lab, lead the Student Committee at the Innovation Cauldron Foundation (organizing the Nano Innovation Ideas Festival 2026), and drive B2B partnerships as Business Development Executive at AMC.</p>
+      <p>Alongside research, I co-founded Gryffindor Lab, lead the Student Committee at the Innovation Cauldron Foundation (organizing the Nano Innovation Ideas Festival 2026), and drive B2B partnerships as Business Development Executive at AMC. I also make science and engineering videos on <a href="#videos" style="color:var(--maroon);font-weight:600">YouTube</a>.</p>
     </div>
     <div class="stats reveal">
       <div class="stat"><b>4<em>+</em></b><span>Active R&amp;D projects</span></div>
@@ -384,6 +400,50 @@
   </div>
 </section>
 
+<!-- ================= VIDEOS ================= -->
+<section id="videos">
+  <div class="container">
+    <div class="head-row reveal">
+      <div><div class="eyebrow">Content creator · YouTube</div><h2 class="h2">Science on <span class="light">Camera</span></h2></div>
+      <a class="link-more" href="https://www.youtube.com/@FahimFaisal-irl?sub_confirmation=1" target="_blank" rel="noreferrer">Subscribe on YouTube →</a>
+    </div>
+    <p class="vintro reveal">I make short videos explaining materials science, engineering and the science behind everyday things, plus lab tests and travel from the field.</p>
+    <div class="vlayout">
+      <div class="vplayer reveal">
+        <!-- Plays the channel's uploads playlist, so it always shows the newest video without code changes -->
+        <iframe src="https://www.youtube-nocookie.com/embed/videoseries?list=UUtvymop6NsBiREQhhRUd7iQ" title="Latest videos from Fahim Faisal's YouTube channel" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div class="vplayer-cap"><span class="tag">Latest upload</span> Updates automatically when a new video is posted.</div>
+      </div>
+      <div class="vgrid">
+      <a class="vcard reveal" href="https://www.youtube.com/watch?v=4xifcD9cdFo" target="_blank" rel="noreferrer">
+        <span class="vthumb"><img src="https://i.ytimg.com/vi/4xifcD9cdFo/hqdefault.jpg" alt="" loading="lazy" /><span class="play">▶</span></span>
+        <span class="vtitle">Why Your Brain Can Only Focus for 47 Seconds Now</span><span class="vdate">Aug 2026</span>
+      </a>
+      <a class="vcard reveal" href="https://www.youtube.com/watch?v=rLPCHydwFO4" target="_blank" rel="noreferrer">
+        <span class="vthumb"><img src="https://i.ytimg.com/vi/rLPCHydwFO4/hqdefault.jpg" alt="" loading="lazy" /><span class="play">▶</span></span>
+        <span class="vtitle">The 100-Year Rubber Mystery Scientists Just Solved (2026 Breakthrough Explained)</span><span class="vdate">Jul 2026</span>
+      </a>
+      <a class="vcard reveal" href="https://www.youtube.com/watch?v=kz1hR-vz6-A" target="_blank" rel="noreferrer">
+        <span class="vthumb"><img src="https://i.ytimg.com/vi/kz1hR-vz6-A/hqdefault.jpg" alt="" loading="lazy" /><span class="play">▶</span></span>
+        <span class="vtitle">The Stadium Ad You're Seeing Isn't Real</span><span class="vdate">Jul 2026</span>
+      </a>
+      <a class="vcard reveal" href="https://www.youtube.com/watch?v=E4v3cM379GM" target="_blank" rel="noreferrer">
+        <span class="vthumb"><img src="https://i.ytimg.com/vi/E4v3cM379GM/hqdefault.jpg" alt="" loading="lazy" /><span class="play">▶</span></span>
+        <span class="vtitle">The Waste Material That Could Replace Cement</span><span class="vdate">Jul 2026</span>
+      </a>
+      <a class="vcard reveal" href="https://www.youtube.com/watch?v=ZAhgSzkSBZU" target="_blank" rel="noreferrer">
+        <span class="vthumb"><img src="https://i.ytimg.com/vi/ZAhgSzkSBZU/hqdefault.jpg" alt="" loading="lazy" /><span class="play">▶</span></span>
+        <span class="vtitle">Bulk Specific Gravity &amp; Water Absorption Test | Granite vs Refractory Brick</span><span class="vdate">Jul 2026</span>
+      </a>
+      <a class="vcard reveal" href="https://www.youtube.com/watch?v=QYJCNKjQSks" target="_blank" rel="noreferrer">
+        <span class="vthumb"><img src="https://i.ytimg.com/vi/QYJCNKjQSks/hqdefault.jpg" alt="" loading="lazy" /><span class="play">▶</span></span>
+        <span class="vtitle">BEAR SUMMIT 2026: Knowledge &amp; Insights Fellow Submission</span><span class="vdate">Jul 2026</span>
+      </a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= EDUCATION ================= -->
 <section class="edu">
   <div class="container">
@@ -412,6 +472,7 @@
     <p>I'm open to research collaborations in functional ceramics and desalination, creative and software commissions at Gryffindor Lab, and corporate partnership inquiries.</p>
     <div class="row">
       <a class="btn" href="https://www.linkedin.com/in/muhammad-fahim-faisal" target="_blank" rel="noreferrer"><span><small>Connect on</small>LinkedIn</span><span class="dot">↗</span></a>
+      <a class="btn-outline" href="https://www.youtube.com/@FahimFaisal-irl" target="_blank" rel="noreferrer">YouTube</a>
       <a class="btn-outline" href="https://www.gryffindorlab.com/" target="_blank" rel="noreferrer">Gryffindor Lab</a>
       <a class="btn-outline" href="https://www.innovationcauldron.org/" target="_blank" rel="noreferrer">Innovation Cauldron</a>
     </div>
@@ -420,7 +481,7 @@
 <footer>
   <div class="container">
     <span>© 2026 Md. Fahim Faisal · Dhaka, Bangladesh</span>
-    <span><a href="#about">About</a> · <a href="#work">Work</a> · <a href="#research">Research</a> · <a href="#contact">Contact</a></span>
+    <span><a href="#about">About</a> · <a href="#work">Work</a> · <a href="#research">Research</a> · <a href="#videos">Videos</a> · <a href="#contact">Contact</a></span>
   </div>
 </footer>
 
