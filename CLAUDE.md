@@ -16,8 +16,13 @@ do the whole job without asking him to touch files, GitHub or Vercel:
    serves the new version and every image loads. Only say "done/live" after this passes.
 6. Reply with a short summary of what changed and the live URL.
 
-If the live check fails, say so plainly with its output, and point him to vercel.com → project
-→ Deployments. Never claim the site updated when the check did not pass.
+If the live check fails because Vercel did not pick up the push, publish directly from this folder:
+`npx.cmd --yes vercel deploy --prod --yes` (this folder is linked to Vercel project `faisal-portfolio-958l`,
+which owns the fahimfaisalncebuet.vercel.app domain; use `npx.cmd`, because PowerShell blocks `npx.ps1` here),
+then run the live check again.
+
+If it still fails, say so plainly with the output. Known cause: the Vercel Hobby limit of 100 deployments
+per 24 hours ("api-deployments-young-hobby-team-24h"). Never claim the site updated when the check did not pass.
 
 Ask before acting only when the request is ambiguous about *content* (e.g. which dates, which wording),
 or before deleting a whole section. Never invent achievements, quotes, testimonials or numbers.
